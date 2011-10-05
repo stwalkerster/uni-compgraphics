@@ -48,7 +48,7 @@
 
 //for model, floor and grid display
 int current_model=1;
-int dont_display_floor=0; 
+int dont_display_floor=1; 
 int x_y_display=0, y_z_display=0, x_z_display=0;
 
 //for view control
