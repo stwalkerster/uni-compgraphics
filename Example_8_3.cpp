@@ -30,6 +30,7 @@
 #include <stdio.h>
 
 #include "cube.h"
+#include "3DCurve.h"
 
 //Hand size parameters
 #define LENGTH_FOREARM 3
@@ -39,7 +40,7 @@
 #define THICKNESS_FINGER 0.2
 
 //Number of models & grids
-#define NUMBER_OF_MODELS 5 
+#define NUMBER_OF_MODELS 6 
 
 
 //======================================================
@@ -184,6 +185,8 @@ void drawScene(float hand_rot, float palm_angle, float f1_angle, float f2_angle,
 		case 5: 
 			drawForearm(); printf("Model = forearm\n");
 		break;
+		case 6:
+			draw3Dcurve(2, 2, 1, 0, 180, 10);
 
 		default:
 			printf("Unknown model\n");
