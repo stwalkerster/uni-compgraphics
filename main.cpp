@@ -200,8 +200,8 @@ void displayCallBack()
 	executeViewControl (yaw, pitch);
 	drawAxesAndGridLines(true, true, true);
 	
-	drawS();
-	//drawV();
+	//drawS();
+	drawV();
 	//drawI();
 	
 	//Draw curve using code in 3DCurve.cpp
