@@ -27,8 +27,9 @@
 #include "drawS.h"
 #include "drawV.h"
 #include "drawI.h"
+#include "drawT.h"
 
-#define NUMBER_OF_MODELS 3 
+#define NUMBER_OF_MODELS 4 
 //======================================================
 // GLOBAL VARIABLES 
 //======================================================
@@ -213,15 +214,15 @@ void displayCallBack()
 	{
 		case 1: 
 			drawS();
-			printf("Model = Letter S\n");
 		break;
 		case 2: 
 			drawV();
-			printf("Model = Letter V\n");
 		break;
 		case 3: 
 			drawI();
-			printf("Model = Letter i\n");
+		break;
+		case 4: 
+			drawT();
 		break;
 		/*case 4: 
 			drawPalmFingers(f1_angle, f2_angle, f3_angle);
