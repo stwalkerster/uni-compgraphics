@@ -1,5 +1,5 @@
-project: main.o drawS.o drawV.o drawI.o Cube.o 3DCurve.o drawT.o
-	gcc main.o drawS.o drawV.o drawI.o Cube.o 3DCurve.o drawT.o -o project -lGLU -lglut -lGL -lm
+project: main.o drawS.o drawV.o drawI.o Cube.o 3DCurve.o drawT.o drawW.o drawR.o
+	gcc main.o drawS.o drawV.o drawI.o Cube.o 3DCurve.o drawT.o drawW.o drawR.o -o project -lGLU -lglut -lGL -lm
 
 main.o: main.cpp
 	gcc -c main.cpp
@@ -15,6 +15,12 @@ drawI.o: drawI.cpp
 
 drawT.o: drawT.cpp
 	gcc -c drawT.cpp
+
+drawW.o: drawW.cpp
+	gcc -c drawW.cpp
+
+drawR.o: drawR.cpp
+	gcc -c drawR.cpp
 
 Cube.o: Cube.cpp
 	gcc -c Cube.cpp

@@ -28,8 +28,10 @@
 #include "drawV.h"
 #include "drawI.h"
 #include "drawT.h"
+#include "drawW.h"
+#include "drawR.h"
 
-#define NUMBER_OF_MODELS 4 
+#define NUMBER_OF_MODELS 6
 //======================================================
 // GLOBAL VARIABLES 
 //======================================================
@@ -226,6 +228,12 @@ void displayCallBack()
 		break;
 		case 4: 
 			drawT();
+		break;
+		case 5: 
+			drawW();
+		break;
+		case 6: 
+			drawR();
 		break;
 		
 		default:
