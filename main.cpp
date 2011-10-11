@@ -48,7 +48,7 @@ int x_y_display=0, y_z_display=0, x_z_display=0;
 //======================================================
 // DRAW AXES and GRIDS
 //======================================================
-void drawAxesAndGridLines(bool x_y_display, bool y_z_display,  bool x_z_display)
+void drawAxesAndGridLines(void)
 {
 	float offset;
 	glBegin(GL_LINES);
@@ -66,7 +66,7 @@ void drawAxesAndGridLines(bool x_y_display, bool y_z_display,  bool x_z_display)
 	//glLineStipple(1, 0xAAAA); //line style = fine dots
 	//glEnable(GL_LINE_STIPPLE);
 
-	/*glBegin(GL_LINES);
+	glBegin(GL_LINES);
 		
 		if (x_y_display) {glColor3f(1.0,0.0,0.0);
 		for (offset=-10.0;offset<10.1;offset++){
@@ -95,7 +95,7 @@ void drawAxesAndGridLines(bool x_y_display, bool y_z_display,  bool x_z_display)
 			glVertex3f(	10, 0, offset);
 		}}
 
-	glEnd();*/
+	glEnd();
 	//glDisable(GL_LINE_STIPPLE);
 
 }
@@ -197,7 +197,7 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	break;
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
 	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
-	case 'X': x_z_display++; if(x_z_display>1) x_z_display=0; break;
+	case 'z': x_z_display++; if(x_z_display>1) x_z_display=0; break;
 	default:
 		printf("Press b - back fill; f - front fill; l - line; i - increment; or d - decrement; r - rotate; R - reset view\n");
 	}
@@ -218,7 +218,7 @@ void displayCallBack()
 	glutBitmapCharacter(GLUT_BITMAP_9_BY_15,'W');
 
 	executeViewControl (yaw, pitch);
-	drawAxesAndGridLines(true, true, true);
+	drawAxesAndGridLines();
 	
 	switch(current_model)
 	{
