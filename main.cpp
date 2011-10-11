@@ -43,8 +43,9 @@ bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
 int current_model=1;
+char* current_model_string="V";
 int x_y_display=0, y_z_display=0, x_z_display=0;
-
+bool F3pressed=false;
 //======================================================
 // DRAW AXES and GRIDS
 //======================================================
@@ -193,6 +194,19 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	//Model selection
 	case 'm': case 'M':
 		current_model++;
+		if (current_model == 1)
+		current_model_string="S";
+		else if (current_model == 2)
+		current_model_string="V";
+		else if (current_model == 3)
+		current_model_string="i";
+		else if (current_model == 4)
+		current_model_string="t";
+		/*else if (current_model == 5)
+		current_model_string="W";
+		else if (current_model == 6)
+		current_model_string="R";*/
+		
 		if (current_model > NUMBER_OF_MODELS) current_model = 1;
 	break;
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
@@ -204,6 +218,16 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 
 	glutPostRedisplay();
 }
+void minecraftStyle(int key, int x, int y)
+{
+	if (key == GLUT_KEY_F3)
+	{
+		F3pressed = !F3pressed;
+		printf("Current model : current_model_string=%s\n", current_model_string);
+	}
+	glutPostRedisplay();
+
+}
 
 //======================================================
 // DISPLAY CALL BACK ROUTINE 
@@ -213,9 +237,11 @@ void displayCallBack()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
+	if (F3pressed){
 	glColor3f(1,1,1);
 	glRasterPos3f (-2, 2, 0);
-	glutBitmapCharacter(GLUT_BITMAP_9_BY_15,'W');
+	
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15,'W');}
 
 	executeViewControl (yaw, pitch);
 	drawAxesAndGridLines();
@@ -290,6 +316,7 @@ int main(int argc, char** argv)
 	glutMouseFunc(mouseClickCallBack);
     glutMotionFunc(mouseMotionCallBack);
 	glutKeyboardFunc(keyboardCallBack);
+	glutSpecialFunc(minecraftStyle);
 
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glColor3f(1.0, 0.0, 0.0);
