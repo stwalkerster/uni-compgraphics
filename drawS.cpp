@@ -28,8 +28,8 @@ void drawS()
 					  5.0);
 	glPopMatrix();
 	
-				  //glTranslatef(0,1.75,0);
-				  //glRotatef(45,1,0,0);
-				  //glScalef(0.65,0.65,0.65);
-				  //cube();
+				  /*glTranslatef(0,1.75,0);
+				  glRotatef(45,1,0,0);
+				  glScalef(0.65,0.65,0.65);
+				  cube();*/
 }

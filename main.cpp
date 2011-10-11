@@ -40,7 +40,7 @@ bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
 int current_model=1;
-
+int x_y_display=0, y_z_display=0, x_z_display=0;
 
 //======================================================
 // DRAW AXES and GRIDS
@@ -192,6 +192,9 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		current_model++;
 		if (current_model > NUMBER_OF_MODELS) current_model = 1;
 	break;
+	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
+	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
+	case 'X': x_z_display++; if(x_z_display>1) x_z_display=0; break;
 	default:
 		printf("Press b - back fill; f - front fill; l - line; i - increment; or d - decrement; r - rotate; R - reset view\n");
 	}
@@ -213,23 +216,13 @@ void displayCallBack()
 	{
 		case 1: 
 			drawS();
-			printf("Model = Letter S\n");
 		break;
 		case 2: 
 			drawV();
-			printf("Model = Letter V\n");
 		break;
 		case 3: 
 			drawI();
-			printf("Model = Letter i\n");
 		break;
-		/*case 4: 
-			drawPalmFingers(f1_angle, f2_angle, f3_angle);
-			printf("Model =  palm_fingers\n");
-		break;
-		case 5: 
-			drawForearm(); printf("Model = forearm\n");
-		break;*/
 		
 		default:
 			printf("Unknown model\n");
