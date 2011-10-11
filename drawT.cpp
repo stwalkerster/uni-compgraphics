@@ -9,16 +9,17 @@ void drawT()
 	glPushMatrix();
 		glTranslatef(0,-0.5,0);
 		//r
-		glScalef(0.5,4,0.5);
+		glScalef(0.5,3,0.5);
 		cube();
 	glPopMatrix();
 
-
 	// draw curve of t
 	glPushMatrix();
-		//
+		glTranslatef(0.75,-2,0);
+		//r
+		//s
+		draw3Dcurve(0.5, 0.5, 1, 180, 315, 5);
 	glPopMatrix();
-
 
 	// draw left cross of t
 	glPushMatrix();
