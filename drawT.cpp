@@ -13,12 +13,13 @@ void drawT()
 		cube();
 	glPopMatrix();
 
-
 	// draw curve of t
 	glPushMatrix();
-		//
+		glTranslatef(0.75,-2.5,0);
+		//r
+		//s
+		draw3Dcurve(0.5, 0.5, 1, 180, 315, 10);
 	glPopMatrix();
-
 
 	// draw left cross of t
 	glPushMatrix();
