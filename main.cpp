@@ -28,6 +28,7 @@
 #include "drawV.h"
 #include "drawI.h"
 
+#define NUMBER_OF_MODELS 3 
 //======================================================
 // GLOBAL VARIABLES 
 //======================================================
@@ -38,6 +39,8 @@ float pitch0, yaw0;
 bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
+int current_model=1;
+
 
 //======================================================
 // DRAW AXES and GRIDS
@@ -184,6 +187,11 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	case 'R':
         resetView();
 	break;
+	//Model selection
+	case 'm': case 'M':
+		current_model++;
+		if (current_model > NUMBER_OF_MODELS) current_model = 1;
+	break;
 	default:
 		printf("Press b - back fill; f - front fill; l - line; i - increment; or d - decrement; r - rotate; R - reset view\n");
 	}
@@ -201,8 +209,34 @@ void displayCallBack()
 	executeViewControl (yaw, pitch);
 	drawAxesAndGridLines(true, true, true);
 	
+	switch(current_model)
+	{
+		case 1: 
+			drawS();
+			printf("Model = Letter S\n");
+		break;
+		case 2: 
+			drawV();
+			printf("Model = Letter V\n");
+		break;
+		case 3: 
+			drawI();
+			printf("Model = Letter i\n");
+		break;
+		/*case 4: 
+			drawPalmFingers(f1_angle, f2_angle, f3_angle);
+			printf("Model =  palm_fingers\n");
+		break;
+		case 5: 
+			drawForearm(); printf("Model = forearm\n");
+		break;*/
+		
+		default:
+			printf("Unknown model\n");
+	}
+	
 	//drawS();
-	drawV();
+	//drawV();
 	//drawI();
 	
 	//Draw curve using code in 3DCurve.cpp
