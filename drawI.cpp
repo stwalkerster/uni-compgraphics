@@ -6,7 +6,7 @@
 void drawI()
 {
 	glPushMatrix();
-		glScalef(0.5,2,0.5);
+		glScalef(0.5,2,0.5);#test comment
 	cube();
 	glPopMatrix();
 	
