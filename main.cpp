@@ -212,6 +212,11 @@ void displayCallBack()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
+
+	glColor3f(1,1,1);
+	glRasterPos3f (-2, 2, 0);
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15,'W');
+
 	executeViewControl (yaw, pitch);
 	drawAxesAndGridLines(true, true, true);
 	
