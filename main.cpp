@@ -48,20 +48,21 @@ void drawAxesAndGridLines(bool x_y_display, bool y_z_display,  bool x_z_display)
 	glBegin(GL_LINES);
 		glColor3f(1, 0, 0);
 		glVertex3f(-20, 0, 0);					
-		glVertex3f(+20, 0, 0);					
+		glVertex3f(+20, 0, 0);
+		glColor3f(0, 1, 0);					
 		glVertex3f( 0 ,-20, 0);				    	
 		glVertex3f(	0, +20, 0);
+		glColor3f(0, 0, 1);
 		glVertex3f( 0, 0,-20);				    	
 		glVertex3f(	0, 0, +20);
 
 	glEnd();
-	
-	glLineStipple(1, 0xAAAA); //line style = fine dots
-	glEnable(GL_LINE_STIPPLE);
+	//glLineStipple(1, 0xAAAA); //line style = fine dots
+	//glEnable(GL_LINE_STIPPLE);
 
-	glBegin(GL_LINES);
+	/*glBegin(GL_LINES);
 		
-		if (x_y_display) {glColor3f(0.0,0.7,0.7);
+		if (x_y_display) {glColor3f(1.0,0.0,0.0);
 		for (offset=-10.0;offset<10.1;offset++){
 			//draw lines in x-y plane
 			glVertex3f(-10.0, offset, 0.0);					// Top Left
@@ -88,8 +89,8 @@ void drawAxesAndGridLines(bool x_y_display, bool y_z_display,  bool x_z_display)
 			glVertex3f(	10, 0, offset);
 		}}
 
-	glEnd();
-	glDisable(GL_LINE_STIPPLE);
+	glEnd();*/
+	//glDisable(GL_LINE_STIPPLE);
 
 }
 
@@ -246,7 +247,7 @@ int main(int argc, char** argv)
     glutMotionFunc(mouseMotionCallBack);
 	glutKeyboardFunc(keyboardCallBack);
 
-	glClearColor(1.0, 1.0, 1.0, 1.0);
+	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glColor3f(1.0, 0.0, 0.0);
 	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	glEnable(GL_DEPTH_TEST); /* Enable hidden--surface--removal */
