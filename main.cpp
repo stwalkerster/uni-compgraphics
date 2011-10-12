@@ -47,7 +47,7 @@ char* current_model_string="S";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=false;
 char *c;
-char *string;
+char *string = "S";
 
 //======================================================
 // DRAW AXES and GRIDS
@@ -197,6 +197,7 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	//Model selection
 	case 'm': case 'M':
 		current_model++;
+		if (current_model > NUMBER_OF_MODELS) current_model = 1;
 		if (current_model == 1)
 		{
 			current_model_string="S";
@@ -227,8 +228,6 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 			current_model_string="R";
 			string = "R";
 		}
-		
-		if (current_model > NUMBER_OF_MODELS) current_model = 1;
 	break;
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
 	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
