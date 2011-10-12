@@ -7,7 +7,6 @@
 //
 ////////////////////////////////////////////////////////////////
 
-//#include "stdafx.h" //Only required for windows
 #include <stdlib.h>
 #include <GL/glut.h>
 #include <math.h>
