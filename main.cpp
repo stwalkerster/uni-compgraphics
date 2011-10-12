@@ -43,9 +43,11 @@ bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
 int current_model=1;
-char* current_model_string="V";
+char* current_model_string="S";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=false;
+
+
 //======================================================
 // DRAW AXES and GRIDS
 //======================================================
@@ -195,17 +197,35 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	case 'm': case 'M':
 		current_model++;
 		if (current_model == 1)
-		current_model_string="S";
+		{
+			current_model_string="S";
+			//c = 'S';
+		}
 		else if (current_model == 2)
-		current_model_string="V";
+		{
+			current_model_string="V";
+			//c = 'V';
+		}
 		else if (current_model == 3)
-		current_model_string="i";
+		{
+			current_model_string="i";
+			//c = 'i';
+		}
 		else if (current_model == 4)
-		current_model_string="t";
-		/*else if (current_model == 5)
-		current_model_string="W";
+		{
+			current_model_string="t";
+			//c = 't';
+		}
+		else if (current_model == 5)
+		{
+			current_model_string="W";
+			//c = 'W';
+		}
 		else if (current_model == 6)
-		current_model_string="R";*/
+		{
+			current_model_string="R";
+			//c = 'R';
+		}
 		
 		if (current_model > NUMBER_OF_MODELS) current_model = 1;
 	break;
@@ -237,11 +257,20 @@ void displayCallBack()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	if (F3pressed){
-	glColor3f(1,1,1);
-	glRasterPos3f (-2, 2, 0);
-	
-	glutBitmapCharacter(GLUT_BITMAP_9_BY_15,'W');}
+	if (F3pressed)
+	{
+		glColor3f(1,1,1);
+		glRasterPos3f (-2, 2, 0);
+		
+		char *c;
+		char *string;
+		string = "test";
+		
+		for(c=string; *c != '\0'; c++)
+		{
+			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, *c);
+		}
+	}
 
 	executeViewControl (yaw, pitch);
 	drawAxesAndGridLines();
@@ -306,8 +335,8 @@ int main(int argc, char** argv)
 
 	// Create and name window
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); // Need both double buffering and z buffer
-    glutInitWindowSize(500, 500);
-    glutCreateWindow("Example 8.1 - 3D Curve Example");
+    glutInitWindowSize(600, 600);
+    glutCreateWindow("Initials");
 
 	// Add Display & Mouse CallBacks
 	glutReshapeFunc(reshapeCallBack);
