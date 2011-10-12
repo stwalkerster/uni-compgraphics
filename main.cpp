@@ -46,7 +46,8 @@ int current_model=1;
 char* current_model_string="S";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=false;
-
+char *c;
+char *string;
 
 //======================================================
 // DRAW AXES and GRIDS
@@ -199,32 +200,32 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		if (current_model == 1)
 		{
 			current_model_string="S";
-			//c = 'S';
+			string = "S";
 		}
 		else if (current_model == 2)
 		{
 			current_model_string="V";
-			//c = 'V';
+			string = "V";
 		}
 		else if (current_model == 3)
 		{
 			current_model_string="i";
-			//c = 'i';
+			string = "i";
 		}
 		else if (current_model == 4)
 		{
 			current_model_string="t";
-			//c = 't';
+			string = "t";
 		}
 		else if (current_model == 5)
 		{
 			current_model_string="W";
-			//c = 'W';
+			string = "W";
 		}
 		else if (current_model == 6)
 		{
 			current_model_string="R";
-			//c = 'R';
+			string = "R";
 		}
 		
 		if (current_model > NUMBER_OF_MODELS) current_model = 1;
@@ -261,10 +262,8 @@ void displayCallBack()
 	{
 		glColor3f(1,1,1);
 		glRasterPos3f (-2, 2, 0);
-		
-		char *c;
-		char *string;
-		string = "test";
+
+		//string = "test";
 		
 		for(c=string; *c != '\0'; c++)
 		{
