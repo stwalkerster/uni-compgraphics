@@ -18,6 +18,10 @@
 //
 // Last tested in Visual C++ 2010 Express 
 
+/*
+ * draw is once solid then change draw mode and redraw it. remove color from 3dcurve to be able to draw it once in white then in black
+ */
+
 #include <stdlib.h>
 #include <GL/glut.h>
 #include <math.h>
@@ -277,6 +281,10 @@ void displayCallBack()
 	{
 		case 1: 
 			drawS();
+		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+			drawS();
+		glPolygonMode(GL_FRONT,GL_FILL);
+			
 		break;
 		case 2: 
 			drawV();
