@@ -29,4 +29,4 @@ Cube.o: Cube.cpp
 	gcc -c 3DCurve.cpp
 
 clean:
-	rm main.o drawS.o drawV.o drawI.o drawT.o drawW.o drawR.o Cube.o 3DCurve.o project
+	rm -f main.o drawS.o drawV.o drawI.o drawT.o drawW.o drawR.o Cube.o 3DCurve.o project
