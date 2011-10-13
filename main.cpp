@@ -259,7 +259,7 @@ void displayCallBack()
 	{
 		
 		glColor3f(1,1,1);
-		glRasterPos3f (-2, 2, 0);
+		glRasterPos3f (-3.4, 2.85, 0);
 
 		std::string displayString = "Current model : current_model_string=" + current_model_string;
 
