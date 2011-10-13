@@ -51,7 +51,7 @@ char* current_model_string="S";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=false;
 char *c;
-char *string = "S";
+char *_tmp_string = "S";
 
 //======================================================
 // DRAW AXES and GRIDS
@@ -205,32 +205,32 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		if (current_model == 1)
 		{
 			current_model_string="S";
-			string = "S";
+			_tmp_string = "S";
 		}
 		else if (current_model == 2)
 		{
 			current_model_string="V";
-			string = "V";
+			_tmp_string = "V";
 		}
 		else if (current_model == 3)
 		{
 			current_model_string="X";
-			string = "X";
+			_tmp_string = "X";
 		}
 		else if (current_model == 4)
 		{
 			current_model_string="t";
-			string = "t";
+			_tmp_string = "t";
 		}
 		else if (current_model == 5)
 		{
 			current_model_string="W";
-			string = "W";
+			_tmp_string = "W";
 		}
 		else if (current_model == 6)
 		{
 			current_model_string="U";
-			string = "U";
+			_tmp_string = "U";
 		}
 	break;
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
@@ -268,7 +268,7 @@ void displayCallBack()
 
 		//string = "test";
 		
-		for(c=string; *c != '\0'; c++)
+		for(c=_tmp_string; *c != '\0'; c++)
 		{
 			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, *c);
 		}
