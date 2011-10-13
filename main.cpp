@@ -30,7 +30,7 @@
 //#include "Cube.h"
 #include "drawS.h"
 #include "drawV.h"
-#include "drawI.h"
+#include "drawX.h"
 #include "drawT.h"
 #include "drawW.h"
 #include "drawR.h"
@@ -214,8 +214,8 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		}
 		else if (current_model == 3)
 		{
-			current_model_string="i";
-			string = "i";
+			current_model_string="X";
+			string = "X";
 		}
 		else if (current_model == 4)
 		{
@@ -290,7 +290,7 @@ void displayCallBack()
 			drawV();
 		break;
 		case 3: 
-			drawI();
+			drawX();
 		break;
 		case 4: 
 			drawT();
