@@ -16,7 +16,7 @@
 //
 // Callback commentary sent to normal command window.
 //
-// Last tested in Visual C++ 2010 Express 
+// Last tested in Visual C++ 2010 Express
 
 /*
  * draw is once solid then change draw mode and redraw it. remove color from 3dcurve to be able to draw it once in white then in black
@@ -39,7 +39,7 @@
 
 #define NUMBER_OF_MODELS 6
 //======================================================
-// GLOBAL VARIABLES 
+// GLOBAL VARIABLES
 //======================================================
 static double theta_stop1 = 270;
 float pitch = 0.0f;
@@ -51,7 +51,7 @@ bool rotating=false;
 int current_model=1;
 std::string current_model_string = "S";
 int x_y_display=0, y_z_display=0, x_z_display=0;
-bool F3pressed=false;
+bool F3pressed=true;
 
 //======================================================
 // DRAW AXES and GRIDS
@@ -61,21 +61,20 @@ void drawAxesAndGridLines(void)
 	float offset;
 	glBegin(GL_LINES);
 		glColor3f(1, 0, 0);
-		glVertex3f(-20, 0, 0);					
+		glVertex3f(-20, 0, 0);
 		glVertex3f(+20, 0, 0);
-		glColor3f(0, 1, 0);					
-		glVertex3f( 0 ,-20, 0);				    	
+		glColor3f(0, 1, 0);
+		glVertex3f( 0 ,-20, 0);
 		glVertex3f(	0, +20, 0);
 		glColor3f(0, 0, 1);
-		glVertex3f( 0, 0,-20);				    	
+		glVertex3f( 0, 0,-20);
 		glVertex3f(	0, 0, +20);
 
 	glEnd();
-	//glLineStipple(1, 0xAAAA); //line style = fine dots
-	//glEnable(GL_LINE_STIPPLE);
+	glLineStipple(1, 0xAAAA); //line style = fine dots
+	glEnable(GL_LINE_STIPPLE);
 
 	glBegin(GL_LINES);
-		
 		if (x_y_display) {glColor3f(1.0,0.0,0.0);
 		for (offset=-10.0;offset<10.1;offset++){
 			//draw lines in x-y plane
@@ -88,23 +87,23 @@ void drawAxesAndGridLines(void)
 		if (y_z_display) {glColor3f(0.7,0.0,0.7);
 		for (offset=-10.0;offset<10.1;offset++){
 			//draw lines in y-z plane
-			glVertex3f( 0, offset, -10);					
+			glVertex3f( 0, offset, -10);
 			glVertex3f(	0, offset, 10.0);
-			glVertex3f( 0, -10, offset);					
+			glVertex3f( 0, -10, offset);
 			glVertex3f(	0, 10, offset);
 		}}
 
 		if (x_z_display) {glColor3f(0.7,0.7,0.0);
 		for (offset=-10.0;offset<10.1;offset++){
 			//draw lines in x-z plane
-			glVertex3f( offset, 0, -10);					
+			glVertex3f( offset, 0, -10);
 			glVertex3f(	offset, 0, 10.0);
-			glVertex3f( -10, 0, offset);					
+			glVertex3f( -10, 0, offset);
 			glVertex3f(	10, 0, offset);
 		}}
 
 	glEnd();
-	//glDisable(GL_LINE_STIPPLE);
+	glDisable(GL_LINE_STIPPLE);
 
 }
 
@@ -257,14 +256,12 @@ void displayCallBack()
 
 	if (F3pressed)
 	{
-		
+
 		glColor3f(1,1,1);
 		glRasterPos3f (-3.4, 2.85, 0);
 
 		std::string displayString = "Current model : current_model_string=" + current_model_string;
 
-		//string = "test";
-		
 		for(int i = 0; i < displayString.size() ; i++)
 		{
 			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, displayString[i]);
@@ -273,44 +270,40 @@ void displayCallBack()
 
 	executeViewControl (yaw, pitch);
 	drawAxesAndGridLines();
-	
+
 	switch(current_model)
 	{
-		case 1: 
+		case 1:
 			drawS();
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 			drawS();
 		glPolygonMode(GL_FRONT,GL_FILL);
-			
+
 		break;
-		case 2: 
+		case 2:
 			drawV();
 		break;
-		case 3: 
+		case 3:
 			drawX();
 		break;
-		case 4: 
+		case 4:
 			drawT();
 		break;
-		case 5: 
+		case 5:
 			drawW();
 		break;
-		case 6: 
+		case 6:
 			drawU();
 		break;
-		
+
 		default:
 			printf("Unknown model\n");
 	}
-	
-	//drawS();
-	//drawV();
-	//drawI();
-	
+
 	//Draw curve using code in 3DCurve.cpp
 	/*glTranslatef(0,1.3,0);
 	glScalef(0.75,0.75,0.75);
-	draw3Dcurve  (1.0,          //depth  
+	draw3Dcurve  (1.0,          //depth
 				  1.5,          //inner radius
 				  2.0,          //outer radius
 				  0.0,          //start angle //0.0
@@ -318,13 +311,13 @@ void displayCallBack()
 				  5.0);         //anular increments
 glTranslatef(0,-3.5,0);
 glRotatef(180,0,0,0);
-	draw3Dcurve  (1.0,          //depth  
+	draw3Dcurve  (1.0,          //depth
 				  1.5,          //inner radius
 				  2.0,          //outer radius
 				  0.0,          //start angle //0.0
 				  theta_stop1,  //stop angle
 				  5.0);*/
-				  
+
 	glutSwapBuffers();
 }
 
