@@ -26,6 +26,8 @@
 #include <GL/glut.h>
 #include <math.h>
 #include <stdio.h>
+#include <string>
+#include <iostream>
 //#include "3DCurve.h"
 //#include "Cube.h"
 #include "drawS.h"
@@ -47,11 +49,10 @@ bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
 int current_model=1;
-char* current_model_string="S";
+std::string current_model_string = "S";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=false;
-char *c;
-char *_tmp_string = "S";
+std::string _tmp_string = "S";
 
 //======================================================
 // DRAW AXES and GRIDS
@@ -247,7 +248,7 @@ void minecraftStyle(int key, int x, int y)
 	if (key == GLUT_KEY_F3)
 	{
 		F3pressed = !F3pressed;
-		printf("Current model : current_model_string=%s\n", current_model_string);
+		std::cout << "Current model : current_model_string=" << current_model_string << "\n";
 	}
 	glutPostRedisplay();
 
@@ -263,14 +264,15 @@ void displayCallBack()
 
 	if (F3pressed)
 	{
+		
 		glColor3f(1,1,1);
 		glRasterPos3f (-2, 2, 0);
 
 		//string = "test";
 		
-		for(c=_tmp_string; *c != '\0'; c++)
+		for(int i = 0; i < current_model_string.size() ; i++)
 		{
-			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, *c);
+			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, current_model_string[i]);
 		}
 	}
 
