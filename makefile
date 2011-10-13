@@ -3,3 +3,5 @@ project: main.o drawS.o drawV.o drawI.o Cube.o 3DCurve.o drawT.o drawW.o drawR.o
 
 clean:
 	rm -f main.o drawS.o drawV.o drawI.o drawT.o drawW.o drawR.o drawX.o drawU.o Cube.o 3DCurve.o project
+
+rebuild: clean project
