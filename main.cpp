@@ -33,7 +33,7 @@
 #include "drawX.h"
 #include "drawT.h"
 #include "drawW.h"
-#include "drawR.h"
+#include "drawU.h"
 
 #define NUMBER_OF_MODELS 6
 //======================================================
@@ -229,8 +229,8 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		}
 		else if (current_model == 6)
 		{
-			current_model_string="R";
-			string = "R";
+			current_model_string="U";
+			string = "U";
 		}
 	break;
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
@@ -299,7 +299,7 @@ void displayCallBack()
 			drawW();
 		break;
 		case 6: 
-			drawR();
+			drawU();
 		break;
 		
 		default:
