@@ -40,6 +40,14 @@ void drawW()
 		//s
 		drawLoop();
 	glPopMatrix();
+
+	//draw middle |
+	glPushMatrix();
+		glTranslatef(0,0.5,0);
+		//r
+		glScalef(1,0.5,1);
+		drawStick();
+	glPopMatrix();
 }
 
 void drawStick()
@@ -48,7 +56,6 @@ void drawStick()
                 //r
                 glScalef(0.5,2,0.5);
                 cube();
-
 }
 
 void drawLoop()
