@@ -1,7 +1,18 @@
 project: main.o drawS.o drawV.o Cube.o 3DCurve.o drawT.o drawW.o drawX.o drawU.o
 	gcc main.o drawS.o drawV.o Cube.o 3DCurve.o drawT.o drawW.o drawX.o drawU.o -o project -lGLU -lglut -lGL -lm
 
-clean:
-	rm -f main.o drawS.o drawV.o drawI.o drawT.o drawW.o drawR.o drawX.o drawU.o Cube.o 3DCurve.o project
+clean: tidy
+	rm -f project
 
 rebuild: clean project
+
+all: clean run
+
+run: project
+	./project
+
+tidy:
+	rm -f *.o
+
+help:
+	echo "Possible targets are: project clean rebuild all run tidy help"
