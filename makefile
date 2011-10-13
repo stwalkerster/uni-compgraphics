@@ -1,5 +1,5 @@
-project: main.o drawS.o drawV.o drawI.o Cube.o 3DCurve.o drawT.o drawW.o drawR.o
-	gcc main.o drawS.o drawV.o drawI.o Cube.o 3DCurve.o drawT.o drawW.o drawR.o -o project -lGLU -lglut -lGL -lm
+project: main.o drawS.o drawV.o drawI.o Cube.o 3DCurve.o drawT.o drawW.o drawR.o drawX.o drawU.o
+	gcc main.o drawS.o drawV.o drawI.o Cube.o 3DCurve.o drawT.o drawW.o drawR.o drawX.o drawU.o -o project -lGLU -lglut -lGL -lm
 
 main.o: main.cpp
 	gcc -c main.cpp
@@ -22,6 +22,12 @@ drawW.o: drawW.cpp
 drawR.o: drawR.cpp
 	gcc -c drawR.cpp
 
+drawU.o: drawU.cpp
+	gcc -c drawU.cpp
+
+drawX.o: drawX.cpp
+	gcc -c drawX.cpp
+
 Cube.o: Cube.cpp
 	gcc -c Cube.cpp
 
@@ -29,4 +35,4 @@ Cube.o: Cube.cpp
 	gcc -c 3DCurve.cpp
 
 clean:
-	rm -f main.o drawS.o drawV.o drawI.o drawT.o drawW.o drawR.o Cube.o 3DCurve.o project
+	rm -f main.o drawS.o drawV.o drawI.o drawT.o drawW.o drawR.o drawX.o drawU.o Cube.o 3DCurve.o project
