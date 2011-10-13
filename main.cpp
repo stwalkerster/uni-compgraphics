@@ -52,7 +52,6 @@ int current_model=1;
 std::string current_model_string = "S";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=false;
-std::string _tmp_string = "S";
 
 //======================================================
 // DRAW AXES and GRIDS
@@ -206,32 +205,26 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		if (current_model == 1)
 		{
 			current_model_string="S";
-			_tmp_string = "S";
 		}
 		else if (current_model == 2)
 		{
 			current_model_string="V";
-			_tmp_string = "V";
 		}
 		else if (current_model == 3)
 		{
 			current_model_string="X";
-			_tmp_string = "X";
 		}
 		else if (current_model == 4)
 		{
 			current_model_string="t";
-			_tmp_string = "t";
 		}
 		else if (current_model == 5)
 		{
 			current_model_string="W";
-			_tmp_string = "W";
 		}
 		else if (current_model == 6)
 		{
 			current_model_string="U";
-			_tmp_string = "U";
 		}
 	break;
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
@@ -268,11 +261,13 @@ void displayCallBack()
 		glColor3f(1,1,1);
 		glRasterPos3f (-2, 2, 0);
 
+		std::string displayString = "Current model : current_model_string=" + current_model_string;
+
 		//string = "test";
 		
-		for(int i = 0; i < current_model_string.size() ; i++)
+		for(int i = 0; i < displayString.size() ; i++)
 		{
-			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, current_model_string[i]);
+			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, displayString[i]);
 		}
 	}
 
