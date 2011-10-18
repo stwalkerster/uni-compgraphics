@@ -16,7 +16,7 @@
 //
 // Callback commentary sent to normal command window.
 //
-// Last tested in Visual C++ 2010 Express 
+// Last tested in Visual C++ 2010 Express
 
 /*
  * draw is once solid then change draw mode and redraw it. remove color from 3dcurve to be able to draw it once in white then in black
@@ -26,19 +26,21 @@
 #include <GL/glut.h>
 #include <math.h>
 #include <stdio.h>
+#include <string>
+#include <iostream>
 //#include "3DCurve.h"
 //#include "Cube.h"
 #include "drawS.h"
 #include "drawV.h"
-#include "drawI.h"
+#include "drawX.h"
 #include "drawT.h"
 #include "drawW.h"
-#include "drawR.h"
+#include "drawU.h"
 #include "stdafx.h"
 
 #define NUMBER_OF_MODELS 6
 //======================================================
-// GLOBAL VARIABLES 
+// GLOBAL VARIABLES
 //======================================================
 static double theta_stop1 = 270;
 float pitch = 0.0f;
@@ -48,11 +50,9 @@ bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
 int current_model=1;
-char* current_model_string="S";
+std::string current_model_string = "S";
 int x_y_display=0, y_z_display=0, x_z_display=0;
-bool F3pressed=false;
-char *c;
-char *string = "S";
+bool F3pressed=true;
 
 //======================================================
 // DRAW AXES and GRIDS
@@ -62,21 +62,20 @@ void drawAxesAndGridLines(void)
 	float offset;
 	glBegin(GL_LINES);
 		glColor3f(1, 0, 0);
-		glVertex3f(-20, 0, 0);					
+		glVertex3f(-20, 0, 0);
 		glVertex3f(+20, 0, 0);
-		glColor3f(0, 1, 0);					
-		glVertex3f( 0 ,-20, 0);				    	
+		glColor3f(0, 1, 0);
+		glVertex3f( 0 ,-20, 0);
 		glVertex3f(	0, +20, 0);
 		glColor3f(0, 0, 1);
-		glVertex3f( 0, 0,-20);				    	
+		glVertex3f( 0, 0,-20);
 		glVertex3f(	0, 0, +20);
 
 	glEnd();
-	//glLineStipple(1, 0xAAAA); //line style = fine dots
-	//glEnable(GL_LINE_STIPPLE);
+	glLineStipple(1, 0xAAAA); //line style = fine dots
+	glEnable(GL_LINE_STIPPLE);
 
 	glBegin(GL_LINES);
-		
 		if (x_y_display) {glColor3f(1.0,0.0,0.0);
 		for (offset=-10.0;offset<10.1;offset++){
 			//draw lines in x-y plane
@@ -89,23 +88,23 @@ void drawAxesAndGridLines(void)
 		if (y_z_display) {glColor3f(0.7,0.0,0.7);
 		for (offset=-10.0;offset<10.1;offset++){
 			//draw lines in y-z plane
-			glVertex3f( 0, offset, -10);					
+			glVertex3f( 0, offset, -10);
 			glVertex3f(	0, offset, 10.0);
-			glVertex3f( 0, -10, offset);					
+			glVertex3f( 0, -10, offset);
 			glVertex3f(	0, 10, offset);
 		}}
 
 		if (x_z_display) {glColor3f(0.7,0.7,0.0);
 		for (offset=-10.0;offset<10.1;offset++){
 			//draw lines in x-z plane
-			glVertex3f( offset, 0, -10);					
+			glVertex3f( offset, 0, -10);
 			glVertex3f(	offset, 0, 10.0);
-			glVertex3f( -10, 0, offset);					
+			glVertex3f( -10, 0, offset);
 			glVertex3f(	10, 0, offset);
 		}}
 
 	glEnd();
-	//glDisable(GL_LINE_STIPPLE);
+	glDisable(GL_LINE_STIPPLE);
 
 }
 
@@ -206,32 +205,26 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		if (current_model == 1)
 		{
 			current_model_string="S";
-			string = "S";
 		}
 		else if (current_model == 2)
 		{
 			current_model_string="V";
-			string = "V";
 		}
 		else if (current_model == 3)
 		{
-			current_model_string="i";
-			string = "i";
+			current_model_string="X";
 		}
 		else if (current_model == 4)
 		{
 			current_model_string="t";
-			string = "t";
 		}
 		else if (current_model == 5)
 		{
 			current_model_string="W";
-			string = "W";
 		}
 		else if (current_model == 6)
 		{
-			current_model_string="R";
-			string = "R";
+			current_model_string="U";
 		}
 	break;
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
@@ -248,7 +241,7 @@ void minecraftStyle(int key, int x, int y)
 	if (key == GLUT_KEY_F3)
 	{
 		F3pressed = !F3pressed;
-		printf("Current model : current_model_string=%s\n", current_model_string);
+		std::cout << "Current model : current_model_string=" << current_model_string << "\n";
 	}
 	glutPostRedisplay();
 
@@ -264,57 +257,54 @@ void displayCallBack()
 
 	if (F3pressed)
 	{
-		glColor3f(1,1,1);
-		glRasterPos3f (-2, 2, 0);
 
-		//string = "test";
-		
-		for(c=string; *c != '\0'; c++)
+		glColor3f(1,1,1);
+		glRasterPos3f (-3.4, 2.85, 0);
+
+		std::string displayString = "Current model : current_model_string=" + current_model_string;
+
+		for(int i = 0; i < displayString.size() ; i++)
 		{
-			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, *c);
+			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, displayString[i]);
 		}
 	}
 
 	executeViewControl (yaw, pitch);
 	drawAxesAndGridLines();
-	
+
 	switch(current_model)
 	{
-		case 1: 
+		case 1:
 			drawS();
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 			drawS();
 		glPolygonMode(GL_FRONT,GL_FILL);
-			
+
 		break;
-		case 2: 
+		case 2:
 			drawV();
 		break;
-		case 3: 
-			drawI();
+		case 3:
+			drawX();
 		break;
-		case 4: 
+		case 4:
 			drawT();
 		break;
-		case 5: 
+		case 5:
 			drawW();
 		break;
-		case 6: 
-			drawR();
+		case 6:
+			drawU();
 		break;
-		
+
 		default:
 			printf("Unknown model\n");
 	}
-	
-	//drawS();
-	//drawV();
-	//drawI();
-	
+
 	//Draw curve using code in 3DCurve.cpp
 	/*glTranslatef(0,1.3,0);
 	glScalef(0.75,0.75,0.75);
-	draw3Dcurve  (1.0,          //depth  
+	draw3Dcurve  (1.0,          //depth
 				  1.5,          //inner radius
 				  2.0,          //outer radius
 				  0.0,          //start angle //0.0
@@ -322,13 +312,13 @@ void displayCallBack()
 				  5.0);         //anular increments
 glTranslatef(0,-3.5,0);
 glRotatef(180,0,0,0);
-	draw3Dcurve  (1.0,          //depth  
+	draw3Dcurve  (1.0,          //depth
 				  1.5,          //inner radius
 				  2.0,          //outer radius
 				  0.0,          //start angle //0.0
 				  theta_stop1,  //stop angle
 				  5.0);*/
-				  
+
 	glutSwapBuffers();
 }
 

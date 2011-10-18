@@ -1,32 +1,18 @@
-project: main.o drawS.o drawV.o drawI.o Cube.o 3DCurve.o drawT.o drawW.o drawR.o
-	gcc main.o drawS.o drawV.o drawI.o Cube.o 3DCurve.o drawT.o drawW.o drawR.o -o project -lGLU -lglut -lGL -lm
+project: main.o drawS.o drawV.o Cube.o 3DCurve.o drawT.o drawW.o drawX.o drawU.o
+	gcc main.o drawS.o drawV.o Cube.o 3DCurve.o drawT.o drawW.o drawX.o drawU.o -o project -lGLU -lglut -lGL -lm
 
-main.o: main.cpp
-	gcc -c main.cpp
+clean: tidy
+	rm -f project
 
-drawS.o: drawS.cpp
-	gcc -c drawS.cpp
+rebuild: clean project
 
-drawV.o: drawV.cpp
-	gcc -c drawV.cpp
+all: clean run
 
-drawI.o: drawI.cpp
-	gcc -c drawI.cpp
+run: project
+	./project
 
-drawT.o: drawT.cpp
-	gcc -c drawT.cpp
+tidy:
+	rm -f *.o
 
-drawW.o: drawW.cpp
-	gcc -c drawW.cpp
-
-drawR.o: drawR.cpp
-	gcc -c drawR.cpp
-
-Cube.o: Cube.cpp
-	gcc -c Cube.cpp
-
-3DCurve.o: 3DCurve.cpp
-	gcc -c 3DCurve.cpp
-
-clean:
-	rm main.o drawS.o drawV.o drawI.o drawT.o drawW.o drawR.o Cube.o 3DCurve.o project
+help:
+	echo "Possible targets are: project clean rebuild all run tidy help"
