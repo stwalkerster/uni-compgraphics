@@ -34,6 +34,7 @@
 #include "drawT.h"
 #include "drawW.h"
 #include "drawR.h"
+#include "stdafx.h"
 
 #define NUMBER_OF_MODELS 6
 //======================================================
