@@ -36,7 +36,10 @@
 #include "drawT.h"
 #include "drawW.h"
 #include "drawU.h"
+
+#if defined WIN32
 #include "stdafx.h"
+#endif
 
 #define NUMBER_OF_MODELS 6
 //======================================================
