@@ -266,7 +266,7 @@ void displayCallBack()
 
 		std::string displayString = "Current model : current_model_string=" + current_model_string;
 
-		for(int i = 0; i < displayString.size() ; i++)
+		for(unsigned int i = 0; i < displayString.size() ; i++)
 		{
 			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, displayString[i]);
 		}
