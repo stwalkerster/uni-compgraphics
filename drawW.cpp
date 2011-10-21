@@ -3,10 +3,6 @@
 #include "3DCurve.h"
 #include "Cube.h"
 
-// prototypes cos I'm lazy and cba to put the functions in the right order
-void drawStick();
-void drawLoop();
-
 void drawW()
 {
 	// draw left |
