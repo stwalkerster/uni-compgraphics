@@ -37,6 +37,17 @@ void draw3Dcurve(double depth, double r1, double r2, double theta_start, double 
 	}
 	glEnd();
 
+	glBegin(GL_LINES);
+	glColor3f(0,0,0);
+	for(thet=theta_start; thet<=theta_stop;thet+=theta_inc) {
+		x=cos(c*thet)*r2; y=sin(c*thet)*r2; glVertex3d(x,y,z);
+		x=cos(c*(thet+theta_inc))*r2; y=sin(c*(thet+theta_inc))*r2; glVertex3d(x,y,z);
+		
+		x=cos(c*thet)*r1; y=sin(c*thet)*r1; glVertex3d(x,y,z);
+		x=cos(c*(thet+theta_inc))*r1; y=sin(c*(thet+theta_inc))*r1; glVertex3d(x,y,z);
+	}
+	glEnd();
+
 	// draw front face (closer to viewer)
 	//glColor3f(1.0, 0.2, 0.2);
 	glColor3f(1.0, 1.0, 1.0);
@@ -47,6 +58,18 @@ void draw3Dcurve(double depth, double r1, double r2, double theta_start, double 
 		x=cos(c*thet)*r2; y=sin(c*thet)*r2; glVertex3d(x,y,z);
 	}
 	glEnd();
+
+	glBegin(GL_LINES);
+	glColor3f(0,0,0);
+	for(thet=theta_start; thet<=theta_stop;thet+=theta_inc) {
+		x=cos(c*thet)*r2; y=sin(c*thet)*r2; glVertex3d(x,y,z);
+		x=cos(c*(thet+theta_inc))*r2; y=sin(c*(thet+theta_inc))*r2; glVertex3d(x,y,z);
+		
+		x=cos(c*thet)*r1; y=sin(c*thet)*r1; glVertex3d(x,y,z);
+		x=cos(c*(thet+theta_inc))*r1; y=sin(c*(thet+theta_inc))*r1; glVertex3d(x,y,z);
+	}
+	glEnd();
+
 
 	// draw upper face
 	//glColor3f(0.0, 0.0, 1.0);
