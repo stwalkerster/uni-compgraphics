@@ -17,16 +17,16 @@ void drawS()
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(1.31,1.34,0);
+	glTranslatef(1.31,1.31,0);
 	glRotatef(45,0,0,1);
-	glScalef(0.3,0.3,0.5);
+	glScalef(0.26,0.26,0.5);
 	cube();
 	glPopMatrix();
 				 
 	glPushMatrix();
-	glTranslatef(-1.31,-1.34,0);
+	glTranslatef(-1.31,-1.31,0);
 	glRotatef(45,0,0,1);
-	glScalef(0.3,0.3,0.5);
+	glScalef(0.26,0.26,0.5);
 	cube();
 	glPopMatrix();
 				  
