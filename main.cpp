@@ -279,48 +279,25 @@ void displayCallBack()
 	{
 		case 1:
 			drawS();
-		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-			drawS();
-		glPolygonMode(GL_FRONT,GL_FILL);
-
-		break;
+			break;
 		case 2:
 			drawV();
-		break;
+			break;
 		case 3:
 			drawX();
-		break;
+			break;
 		case 4:
 			drawT();
-		break;
+			break;
 		case 5:
 			drawW();
-		break;
+			break;
 		case 6:
 			drawU();
-		break;
-
+			break;
 		default:
 			printf("Unknown model\n");
 	}
-
-	//Draw curve using code in 3DCurve.cpp
-	/*glTranslatef(0,1.3,0);
-	glScalef(0.75,0.75,0.75);
-	draw3Dcurve  (1.0,          //depth
-				  1.5,          //inner radius
-				  2.0,          //outer radius
-				  0.0,          //start angle //0.0
-				  theta_stop1,  //stop angle
-				  5.0);         //anular increments
-glTranslatef(0,-3.5,0);
-glRotatef(180,0,0,0);
-	draw3Dcurve  (1.0,          //depth
-				  1.5,          //inner radius
-				  2.0,          //outer radius
-				  0.0,          //start angle //0.0
-				  theta_stop1,  //stop angle
-				  5.0);*/
 
 	glutSwapBuffers();
 }
