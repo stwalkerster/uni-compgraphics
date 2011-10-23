@@ -167,8 +167,12 @@ void reshapeCallBack(int w, int h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 	if (w == 0 || h == 0) return;
-    if (w <= h) glOrtho(-3.0, 3.0, -3.0 * (GLfloat) h / (GLfloat) w, 3.0 * (GLfloat) h / (GLfloat) w, -10.0, 10.0);
-    else        glOrtho(-3.0 * (GLfloat) w / (GLfloat) h, 3.0 * (GLfloat) w / (GLfloat) h, -3.0, 3.0, -10.0, 10.0);
+    if (w <= h)
+//		gluPerspective(60,(GLdouble)w / (GLdouble)h, -10.0, 10.0);
+	//glFrustum(-3.0, 3.0, -3.0 * (GLfloat) h / (GLfloat) w, 3.0 * (GLfloat) h / (GLfloat) w, -10.0, 10.0);
+		glOrtho(-3.0, 3.0, -3.0 * (GLfloat) h / (GLfloat) w, 3.0 * (GLfloat) h / (GLfloat) w, -10.0, 10.0);
+    else
+		glOrtho(-3.0 * (GLfloat) w / (GLfloat) h, 3.0 * (GLfloat) w / (GLfloat) h, -3.0, 3.0, -10.0, 10.0);
     glMatrixMode(GL_MODELVIEW);
 }
 
