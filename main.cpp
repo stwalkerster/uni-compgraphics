@@ -272,8 +272,23 @@ void displayCallBack()
 		}
 	}
 
+	
+
+	GLfloat light0_position[] = {-2,2,2,0};
+	GLfloat light0_diffuse[] = {1,1,0.7,1};
+	GLfloat light1_ambience[] = {0.2,0.2,0.5,0};
+	glLightfv(GL_LIGHT0,GL_POSITION, light0_position);
+	glLightfv(GL_LIGHT0,GL_DIFFUSE, light0_diffuse);
+	glLightfv(GL_LIGHT1,GL_AMBIENT, light1_ambience);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
+
 	executeViewControl (yaw, pitch);
+
+	glDisable(GL_LIGHTING);
 	drawAxesAndGridLines();
+	glEnable(GL_LIGHTING);
+
 
 	switch(current_model)
 	{
@@ -351,6 +366,7 @@ int main(int argc, char** argv)
 	glColor3f(1.0, 0.0, 0.0);
 	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	glEnable(GL_DEPTH_TEST); /* Enable hidden--surface--removal */
+	glEnable( GL_COLOR_MATERIAL );
 
 	// Print Application Usage
 	printf("Program Controls:\n");
