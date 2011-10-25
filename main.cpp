@@ -316,8 +316,6 @@ void displayCallBack()
 	//glEnable(GL_LIGHT1);
 
 		
-	executeViewControl (yaw, pitch);
-	
 	glDisable(GL_LIGHTING);
 	glColor3f(1,1,1);
 	glBegin(GL_LINES);
@@ -326,6 +324,7 @@ void displayCallBack()
 	glEnd();
 	glEnable(GL_LIGHTING);
 
+	executeViewControl (yaw, pitch);
 	drawAxesAndGridLines();
 
 
