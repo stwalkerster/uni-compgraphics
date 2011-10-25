@@ -59,6 +59,8 @@ std::string current_model_string = "teapot";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=true;
 bool rotateModel=true;
+bool perspective=false;
+int vpW=0, vpH=0;
 
 //======================================================
 // DRAW AXES and GRIDS
@@ -184,12 +186,27 @@ void mouseMotionCallBack(int x, int y)
 
 void reshapeCallBack(int w, int h) 
 {
+	vpW=w;
+	vpH=h;
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 	if (w == 0 || h == 0) return;
-    if (w <= h) glOrtho(-3.0, 3.0, -3.0 * (GLfloat) h / (GLfloat) w, 3.0 * (GLfloat) h / (GLfloat) w, -10.0, 10.0);
-    else        glOrtho(-3.0 * (GLfloat) w / (GLfloat) h, 3.0 * (GLfloat) w / (GLfloat) h, -3.0, 3.0, -10.0, 10.0);
+    if(!perspective)
+	{
+		if (w <= h)
+			glOrtho(-3.0, 3.0, -3.0 * (GLfloat) h / (GLfloat) w, 3.0 * (GLfloat) h / (GLfloat) w, -10.0, 10.0);
+	    else
+			glOrtho(-3.0 * (GLfloat) w / (GLfloat) h, 3.0 * (GLfloat) w / (GLfloat) h, -3.0, 3.0, -10.0, 10.0);
+	}
+	else
+	{
+		gluPerspective(60,w/h, 1, 10.0);
+		gluLookAt(0,0,5, //eye
+			0,0,0, // center
+			0,1,0); // up
+	}
+	
     glMatrixMode(GL_MODELVIEW);
 }
 
@@ -254,6 +271,10 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	case 't':
 		current_model=7;
 		current_model_string="teapot";
+		break;
+	case 'p':
+		perspective=!perspective;
+		reshapeCallBack(vpW, vpH);
 		break;
 	case 'v':
 		rotateModel=!rotateModel;
