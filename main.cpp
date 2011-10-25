@@ -302,9 +302,20 @@ void displayCallBack()
 
 
 	GLfloat light0_position[] = {-2,2,2,0};
-	GLfloat light0_diffuse[] = {1,1,0.7,1};
-	GLfloat light1_ambience[] = {0.2,0.2,0.5,0};
+	GLfloat light0_diffuse[] = {1,0,0,1};
+	GLfloat light1_ambience[] = {0,0,1,0};
 
+
+
+	glLightfv(GL_LIGHT0,GL_POSITION, light0_position);
+	glLightfv(GL_LIGHT0,GL_DIFFUSE, light0_diffuse);
+	glLightfv(GL_LIGHT1,GL_AMBIENT, light1_ambience);
+	glEnable(GL_LIGHT0);
+//	glEnable(GL_LIGHT1);
+
+		
+	executeViewControl (yaw, pitch);
+	
 	glDisable(GL_LIGHTING);
 	glColor3f(1,1,1);
 	glBegin(GL_LINES);
@@ -313,17 +324,6 @@ void displayCallBack()
 	glEnd();
 	glEnable(GL_LIGHTING);
 
-	executeViewControl (yaw, pitch);
-
-	glLightfv(GL_LIGHT0,GL_POSITION, light0_position);
-	glLightfv(GL_LIGHT0,GL_DIFFUSE, light0_diffuse);
-	glLightfv(GL_LIGHT1,GL_AMBIENT, light1_ambience);
-	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHT1);
-
-		
-
-	
 	drawAxesAndGridLines();
 
 
