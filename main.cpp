@@ -48,6 +48,8 @@
 static double theta_stop1 = 270;
 float pitch = 0.0f;
 float yaw = 0.0f;
+float pitch2 = 0.0f;
+float yaw2 = 0.0f;
 float pitch0, yaw0;
 bool MousePressed;
 int mouseX0, mouseY0;
@@ -56,12 +58,15 @@ int current_model=1;
 std::string current_model_string = "S";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=true;
+bool rotateModel=true;
 
 //======================================================
 // DRAW AXES and GRIDS
 //======================================================
 void drawAxesAndGridLines(void)
 {
+	glDisable(GL_LIGHTING);
+
 	float offset;
 	glBegin(GL_LINES);
 		glColor3f(1, 0, 0);
@@ -108,7 +113,7 @@ void drawAxesAndGridLines(void)
 
 	glEnd();
 	glDisable(GL_LINE_STIPPLE);
-
+	glEnable(GL_LIGHTING);
 }
 
 //======================================================
@@ -142,8 +147,16 @@ void mouseClickCallBack(int button, int state, int x, int y) {
 		case GLUT_DOWN:
 			MousePressed = true;
 			rotateView(false);
-			pitch0 = pitch; yaw0 = yaw;
-			mouseX0 = x; mouseY0 = y;
+			if(rotateModel)
+			{
+				pitch0 = pitch; yaw0 = yaw;
+				mouseX0 = x; mouseY0 = y;
+			}
+			else
+			{
+				pitch0 = pitch2; yaw0 = yaw2;
+				mouseX0 = x; mouseY0 = y;
+			}
 			break;
 		default:
 		case GLUT_UP:
@@ -156,8 +169,16 @@ void mouseClickCallBack(int button, int state, int x, int y) {
 void mouseMotionCallBack(int x, int y) 
 {
 	// Called when the Mouse is moved with left button down
-    pitch = pitch0 + (y - mouseY0);
-    yaw = yaw0 + (x - mouseX0);
+	if(rotateModel)
+	{
+		pitch = pitch0 + (y - mouseY0);
+		yaw = yaw0 + (x - mouseX0);
+	}
+	else
+	{
+		pitch2 = pitch0 + (y - mouseY0);
+		yaw2 = yaw0 + (x - mouseX0);
+	}
 	glutPostRedisplay();
 } 
 
@@ -230,6 +251,9 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 			current_model_string="U";
 		}
 	break;
+	case 'v':
+		rotateModel=!rotateModel;
+		break;
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
 	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
 	case 'z': x_z_display++; if(x_z_display>1) x_z_display=0; break;
@@ -272,22 +296,35 @@ void displayCallBack()
 		}
 	}
 
-	
+	executeViewControl (yaw2, pitch2);
+	drawAxesAndGridLines();
+
+
 
 	GLfloat light0_position[] = {-2,2,2,0};
 	GLfloat light0_diffuse[] = {1,1,0.7,1};
 	GLfloat light1_ambience[] = {0.2,0.2,0.5,0};
+
+	glDisable(GL_LIGHTING);
+	glColor3f(1,1,1);
+	glBegin(GL_LINES);
+	glVertex3f(0,0,0);
+	glVertex3f(light0_position[0],light0_position[1],light0_position[2]);
+	glEnd();
+	glEnable(GL_LIGHTING);
+
+	executeViewControl (yaw, pitch);
+
 	glLightfv(GL_LIGHT0,GL_POSITION, light0_position);
 	glLightfv(GL_LIGHT0,GL_DIFFUSE, light0_diffuse);
 	glLightfv(GL_LIGHT1,GL_AMBIENT, light1_ambience);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
 
-	executeViewControl (yaw, pitch);
+		
 
-	glDisable(GL_LIGHTING);
+	
 	drawAxesAndGridLines();
-	glEnable(GL_LIGHTING);
 
 
 	switch(current_model)
