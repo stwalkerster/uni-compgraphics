@@ -60,6 +60,12 @@ bool perspective=false;
 int vpW=0, vpH=0;
 
 //======================================================
+// Prototypes
+//======================================================
+
+void help(void);
+
+//======================================================
 // DRAW AXES and GRIDS
 //======================================================
 void drawAxesAndGridLines(void)
@@ -255,7 +261,7 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
 	case 'z': x_z_display++; if(x_z_display>1) x_z_display=0; break;
 	default:
-		printf("Press b - back fill; f - front fill; l - line; i - increment; or d - decrement; r - rotate; R - reset view\n");
+		help();
 	}
 
 	glutPostRedisplay();
@@ -350,6 +356,15 @@ int main(int argc, char** argv)
 	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	glEnable(GL_DEPTH_TEST); /* Enable hidden--surface--removal */
 
+	help();
+
+	glutMainLoop();
+
+	return 0;
+}
+
+void help()
+{
 	// Print Application Usage
 	printf("Program Controls:\n");
 	printf("Left Mouse Button & Drag - Changes the View.\n");
@@ -360,9 +375,4 @@ int main(int argc, char** argv)
 	printf("Key \"d\" - Decrement Sections of Curve.\n");
 	printf("Key \"r\" - Automated Rotation.\n");
 	printf("Key \"R\" - Reset the View.\n");
-
-	glutMainLoop();
-
-	return 0;
 }
-
