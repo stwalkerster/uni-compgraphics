@@ -374,6 +374,7 @@ void displayCallBack()
 			drawU();
 			break;
 		case 7:
+			glColor3f(1,1,1);
 			glutSolidTeapot(1);
 			break;
 		default:
