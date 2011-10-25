@@ -251,6 +251,10 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 			current_model_string="U";
 		}
 	break;
+	case 't':
+		current_model=7;
+		current_model_string="teapot";
+		break;
 	case 'v':
 		rotateModel=!rotateModel;
 		break;
