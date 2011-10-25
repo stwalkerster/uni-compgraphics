@@ -61,6 +61,7 @@ bool F3pressed=true;
 bool rotateModel=true;
 bool perspective=false;
 int vpW=0, vpH=0;
+bool lighting = true;
 
 //======================================================
 // DRAW AXES and GRIDS
@@ -115,7 +116,8 @@ void drawAxesAndGridLines(void)
 
 	glEnd();
 	glDisable(GL_LINE_STIPPLE);
-	glEnable(GL_LIGHTING);
+	if(lighting)
+		glEnable(GL_LIGHTING);
 }
 
 //======================================================
@@ -217,21 +219,14 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	printf("Keyboard call back: key=%c, x=%d, y=%d\n", key, x, y);
 	switch(key)
 	{
-	case 'b': case 'B':
-		glPolygonMode(GL_BACK,GL_FILL);
-	break;
 	case 'f': case 'F':
-		glPolygonMode(GL_FRONT,GL_FILL);
+		glPolygonMode(GL_FRONT | GL_BACK,GL_FILL);
 	break;
-	case 'l': case 'L':
+	case 'w': case 'W':
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	break;
-	case 'i': case 'I':
-		theta_stop1+=10;
-	break;
-	case 'd': case 'D':
-		theta_stop1-=10;
-	break;
+	case 'l':
+		lighting = !lighting;
 	case 'r': 
 		rotating= !rotating;
 		rotateView(rotating);
@@ -283,7 +278,7 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
 	case 'z': x_z_display++; if(x_z_display>1) x_z_display=0; break;
 	default:
-		printf("Press b - back fill; f - front fill; l - line; i - increment; or d - decrement; r - rotate; R - reset view\n");
+		printf("Press f - fill; w - wireframe; r - rotate; R - reset view; l - lighting; m - model; t - teapot; p - perspective; v - model/scene rotate\n");
 	}
 
 	glutPostRedisplay();
@@ -349,7 +344,8 @@ void displayCallBack()
 	glVertex3f(0,0,0);
 	glVertex3f(light0_position[0],light0_position[1],light0_position[2]);
 	glEnd();
-	glEnable(GL_LIGHTING);
+	if(lighting)
+		glEnable(GL_LIGHTING);
 
 	executeViewControl (yaw, pitch);
 	drawAxesAndGridLines();
