@@ -54,8 +54,8 @@ float pitch0, yaw0;
 bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
-int current_model=1;
-std::string current_model_string = "S";
+int current_model=7;
+std::string current_model_string = "teapot";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=true;
 bool rotateModel=true;
@@ -346,6 +346,9 @@ void displayCallBack()
 			break;
 		case 6:
 			drawU();
+			break;
+		case 7:
+			glutSolidTeapot(1);
 			break;
 		default:
 			printf("Unknown model\n");
