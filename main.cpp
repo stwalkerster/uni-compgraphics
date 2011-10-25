@@ -56,6 +56,8 @@ int current_model=1;
 std::string current_model_string = "S";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=true;
+bool perspective=false;
+int vpW=0, vpH=0;
 
 //======================================================
 // DRAW AXES and GRIDS
@@ -163,16 +165,27 @@ void mouseMotionCallBack(int x, int y)
 
 void reshapeCallBack(int w, int h) 
 {
+	vpW=w;
+	vpH=h;
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 	if (w == 0 || h == 0) return;
-    if (w <= h)
-//		gluPerspective(60,(GLdouble)w / (GLdouble)h, -10.0, 10.0);
-	//glFrustum(-3.0, 3.0, -3.0 * (GLfloat) h / (GLfloat) w, 3.0 * (GLfloat) h / (GLfloat) w, -10.0, 10.0);
-		glOrtho(-3.0, 3.0, -3.0 * (GLfloat) h / (GLfloat) w, 3.0 * (GLfloat) h / (GLfloat) w, -10.0, 10.0);
-    else
-		glOrtho(-3.0 * (GLfloat) w / (GLfloat) h, 3.0 * (GLfloat) w / (GLfloat) h, -3.0, 3.0, -10.0, 10.0);
+    if(!perspective)
+	{
+		if (w <= h)
+			glOrtho(-3.0, 3.0, -3.0 * (GLfloat) h / (GLfloat) w, 3.0 * (GLfloat) h / (GLfloat) w, -10.0, 10.0);
+	    else
+			glOrtho(-3.0 * (GLfloat) w / (GLfloat) h, 3.0 * (GLfloat) w / (GLfloat) h, -3.0, 3.0, -10.0, 10.0);
+	}
+	else
+	{
+		gluPerspective(60,w/h, 1, 10.0);
+		gluLookAt(0,0,5, //eye
+			0,0,0, // center
+			0,1,0); // up
+	}
+	
     glMatrixMode(GL_MODELVIEW);
 }
 
@@ -234,6 +247,10 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 			current_model_string="U";
 		}
 	break;
+	case 'p':
+		perspective=!perspective;
+		reshapeCallBack(vpW, vpH);
+		break;
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
 	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
 	case 'z': x_z_display++; if(x_z_display>1) x_z_display=0; break;
