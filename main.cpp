@@ -326,21 +326,23 @@ void displayCallBack()
 
 
 
-	GLfloat light0_position[] = {-4,4,4,1};
-	GLfloat light0_diffuse[] = {0.5,0.5,0.5,1};
+	GLfloat light0_position[] = {-2,2,2,1};
+	GLfloat light0_diffuse[] = {0.6,0.6,0.5,1};
 	GLfloat light0_specular[] = {1,1,1,1};
-	GLfloat light1_ambience[] = {0.2,0.2,0.2,1};
+	GLfloat lightscene_ambience[] = {0.1,0.1,0.1,1};
+	GLfloat material_specular[] = {1,1,1,1};
 
-
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT,lightscene_ambience);
 
 	glLightfv(GL_LIGHT0,GL_POSITION, light0_position);
 	glLightfv(GL_LIGHT0,GL_DIFFUSE, light0_diffuse);
 	glLightfv(GL_LIGHT0,GL_SPECULAR, light0_specular);
-	//glLightfv(GL_LIGHT1,GL_AMBIENT, light1_ambience);
 	glEnable(GL_LIGHT0);
-	//glEnable(GL_LIGHT1);
+	glEnable(GL_LIGHT1);
 
-		
+	glMaterialfv(GL_FRONT,GL_SPECULAR,material_specular);
+	glMaterialf(GL_FRONT,GL_SHININESS,25);	
+
 	glDisable(GL_LIGHTING);
 	glColor3f(1,1,1);
 	glBegin(GL_LINES);
