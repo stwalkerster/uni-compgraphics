@@ -64,6 +64,12 @@ int vpW=0, vpH=0;
 bool lighting = true;
 
 //======================================================
+// Prototypes
+//======================================================
+
+void help(void);
+
+//======================================================
 // DRAW AXES and GRIDS
 //======================================================
 void drawAxesAndGridLines(void)
@@ -278,7 +284,7 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
 	case 'z': x_z_display++; if(x_z_display>1) x_z_display=0; break;
 	default:
-		printf("Press f - fill; w - wireframe; r - rotate; R - reset view; l - lighting; m - model; t - teapot; p - perspective; v - model/scene rotate\n");
+		help();
 	}
 
 	glutPostRedisplay();
@@ -410,19 +416,26 @@ int main(int argc, char** argv)
 	glEnable(GL_DEPTH_TEST); /* Enable hidden--surface--removal */
 	glEnable( GL_COLOR_MATERIAL );
 
-	// Print Application Usage
-	printf("Program Controls:\n");
-	printf("Left Mouse Button & Drag - Changes the View.\n");
-	printf("Key \"b\" - Back Fill.\n");
-	printf("Key \"f\" - Front Fill.\n");
-	printf("Key \"l\" - Wire Frame/Line Fill.\n");
-	printf("Key \"i\" - Increment Sections of Curve.\n");
-	printf("Key \"d\" - Decrement Sections of Curve.\n");
-	printf("Key \"r\" - Automated Rotation.\n");
-	printf("Key \"R\" - Reset the View.\n");
+	help();
 
 	glutMainLoop();
 
 	return 0;
 }
 
+void help()
+{
+	// Print Application Usage
+	printf("Program Controls:\n");
+	printf("Left Mouse Button & Drag - Changes the View.\n");
+	printf("Key \"f\"  - Fill.\n");
+	printf("Key \"w\"  - Wire Frame.\n");
+	printf("Key \"r\"  - Automated Rotation.\n");
+	printf("Key \"R\"  - Reset the View.\n");
+	printf("Key \"l\"  - Toggle lighting.\n");
+	printf("Key \"m\"  - Cycle models.\n");
+	printf("Key \"t\"  - Show Teapot.\n");
+	printf("Key \"p\"  - Toggle perspective.\n");
+	printf("Key \"v\"  - Toggle rotation mode (scene/view).\n");
+	printf("Key \"F3\" - Toggle OSD.\n");
+}
