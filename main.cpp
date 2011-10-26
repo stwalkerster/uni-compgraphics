@@ -227,19 +227,20 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	{
 	case 'f': case 'F':
 		glPolygonMode(GL_FRONT | GL_BACK,GL_FILL);
-	break;
+		break;
 	case 'w': case 'W':
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-	break;
+		break;
 	case 'l':
 		lighting = !lighting;
+		break;
 	case 'r': 
 		rotating= !rotating;
 		rotateView(rotating);
-	break;
+		break;
 	case 'R':
-        resetView();
-	break;
+        	resetView();
+		break;
 	//Model selection
 	case 'm': case 'M':
 		current_model++;
@@ -268,7 +269,7 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		{
 			current_model_string="U";
 		}
-	break;
+		break;
 	case 't':
 		current_model=7;
 		current_model_string="teapot";
@@ -311,6 +312,7 @@ void displayCallBack()
 	if (F3pressed)
 	{
 
+		glDisable(GL_LIGHTING);
 		glColor3f(1,1,1);
 		glRasterPos3f (-3.4, 2.85, 0);
 
@@ -320,10 +322,11 @@ void displayCallBack()
 		{
 			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, displayString[i]);
 		}
+		glEnable(GL_LIGHTING);
 	}
 
 	executeViewControl (yaw2, pitch2);
-	drawAxesAndGridLines();
+	//drawAxesAndGridLines();
 
 
 
