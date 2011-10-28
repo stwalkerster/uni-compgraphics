@@ -28,8 +28,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
-//#include "3DCurve.h"
-//#include "Cube.h"
+
 #include "drawS.h"
 #include "drawV.h"
 #include "drawX.h"
@@ -37,11 +36,13 @@
 #include "drawW.h"
 #include "drawU.h"
 
+#include "test.h" // test file (model 7, moved teapot to 8)
+
 #if defined WIN32
 #include "stdafx.h"
 #endif
 
-#define NUMBER_OF_MODELS 6
+#define NUMBER_OF_MODELS 7
 //======================================================
 // GLOBAL VARIABLES
 //======================================================
@@ -54,7 +55,7 @@ float pitch0, yaw0;
 bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
-int current_model=7;
+int current_model=8;
 std::string current_model_string = "teapot";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=true;
@@ -269,9 +270,13 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		{
 			current_model_string="U";
 		}
+		else if (current_model == 7)
+		{
+			current_model_string="test";
+		}
 		break;
 	case 't':
-		current_model=7;
+		current_model=8;
 		current_model_string="teapot";
 		break;
 	case 'p':
@@ -381,6 +386,9 @@ void displayCallBack()
 			drawU();
 			break;
 		case 7:
+			test();
+			break;
+		case 8:
 			glColor3f(1,1,1);
 			glutSolidTeapot(1);
 			break;
