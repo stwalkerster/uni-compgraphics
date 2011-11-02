@@ -333,8 +333,6 @@ void displayCallBack()
 	executeViewControl (yaw2, pitch2);
 	//drawAxesAndGridLines();
 
-
-
 	GLfloat light0_position[] = {-2,2,2,1};
 	GLfloat light0_diffuse[] = {0.6,0.6,0.5,1};
 	GLfloat light0_specular[] = {1,1,1,1};
@@ -347,7 +345,7 @@ void displayCallBack()
 	glLightfv(GL_LIGHT0,GL_DIFFUSE, light0_diffuse);
 	glLightfv(GL_LIGHT0,GL_SPECULAR, light0_specular);
 	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHT1);
+	//glEnable(GL_LIGHT1);
 
 	glMaterialfv(GL_FRONT,GL_SPECULAR,material_specular);
 	glMaterialf(GL_FRONT,GL_SHININESS,25);	
