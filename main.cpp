@@ -55,7 +55,7 @@ float pitch0, yaw0;
 bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
-int current_model=8;
+int current_model=8; //temp change to 7, while making utest
 std::string current_model_string = "teapot";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=true;
