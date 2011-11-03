@@ -56,5 +56,8 @@ void drawStick()
 
 void drawLoop()
 {
-	draw3Dcurve(0.5, 0.5, 1, 180, 360, 10);
+	glPushMatrix();
+		glScalef(1,1,0.5);
+		draw3Dcurve(1, 0.5, 1, 180, 360, 10);
+	glPopMatrix();
 }
