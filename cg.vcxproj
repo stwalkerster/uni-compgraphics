@@ -79,6 +79,7 @@
     <ClCompile Include="drawV.cpp" />
     <ClCompile Include="drawW.cpp" />
     <ClCompile Include="drawX.cpp" />
+    <ClCompile Include="Ear.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="test.cpp" />
@@ -93,6 +94,7 @@
     <ClInclude Include="drawV.h" />
     <ClInclude Include="drawW.h" />
     <ClInclude Include="drawX.h" />
+    <ClInclude Include="Ear.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="test.h" />

@@ -1,5 +1,5 @@
-project: main.o drawS.o drawV.o Cube.o 3DCurve.o drawT.o drawW.o drawX.o drawU.o Ucube.o test.o
-	g++ main.o drawS.o drawV.o Cube.o 3DCurve.o drawT.o drawW.o drawX.o drawU.o Ucube.o test.o -o project -lGLU -lglut -lGL -lm
+project: main.o drawS.o drawV.o Cube.o 3DCurve.o drawT.o drawW.o drawX.o drawU.o Ucube.o test.o Ear.o
+	g++ main.o drawS.o drawV.o Cube.o 3DCurve.o drawT.o drawW.o drawX.o drawU.o Ucube.o test.o Ear.o -o project -lGLU -lglut -lGL -lm
 
 clean: tidy
 	rm -f project
