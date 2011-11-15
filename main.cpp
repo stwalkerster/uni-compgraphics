@@ -1,3 +1,4 @@
+
 // Example_8_1.cpp : Rotating Wire-Frame 3D Curve
 //
 // Author  : Mike Chantler
@@ -36,13 +37,14 @@
 #include "drawW.h"
 #include "drawU.h"
 
-#include "test.h" // test file (model 7, moved teapot to 8)
+#include "test.h"
+#include "Ear.h"
 
 #if defined WIN32
 #include "stdafx.h"
 #endif
 
-#define NUMBER_OF_MODELS 7
+#define NUMBER_OF_MODELS 8
 //======================================================
 // GLOBAL VARIABLES
 //======================================================
@@ -55,14 +57,14 @@ float pitch0, yaw0;
 bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
-int current_model=8; //temp change to 7, while making utest
+int current_model=8;
 std::string current_model_string = "teapot";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=true;
 bool rotateModel=true;
 bool perspective=false;
 int vpW=0, vpH=0;
-bool lighting = true;
+bool lighting = false;
 
 //======================================================
 // Prototypes
@@ -274,9 +276,13 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		{
 			current_model_string="test";
 		}
+		else if (current_model == 8)
+		{
+			current_model_string="ear";
+		}
 		break;
 	case 't':
-		current_model=8;
+		current_model=9;
 		current_model_string="teapot";
 		break;
 	case 'p':
@@ -387,6 +393,9 @@ void displayCallBack()
 			test();
 			break;
 		case 8:
+			drawEar();
+			break;
+		case 9:
 			glColor3f(1,1,1);
 			glutSolidTeapot(1);
 			break;
