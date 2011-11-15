@@ -1,3 +1,4 @@
+
 // Example_8_1.cpp : Rotating Wire-Frame 3D Curve
 //
 // Author  : Mike Chantler
@@ -38,12 +39,13 @@
 
 #include "test.h"
 #include "wing.h"
+#include "Ear.h"
 
 #if defined WIN32
 #include "stdafx.h"
 #endif
 
-#define NUMBER_OF_MODELS 8
+#define NUMBER_OF_MODELS 9
 //======================================================
 // GLOBAL VARIABLES
 //======================================================
@@ -63,7 +65,7 @@ bool F3pressed=true;
 bool rotateModel=true;
 bool perspective=false;
 int vpW=0, vpH=0;
-bool lighting = true;
+bool lighting = false;
 
 //======================================================
 // Prototypes
@@ -279,9 +281,13 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		{
 			current_model_string="wing";
 		}
+		else if (current_model == 9)
+		{
+			current_model_string="ear";
+		}
 		break;
 	case 't':
-		current_model=9;
+		current_model=10;
 		current_model_string="teapot";
 		break;
 	case 'p':
@@ -395,6 +401,9 @@ void displayCallBack()
 			wing();
 			break;
 		case 9:
+			drawEar();
+			break;
+		case 10:
 			glColor3f(1,1,1);
 			glutSolidTeapot(1);
 			break;
