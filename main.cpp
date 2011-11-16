@@ -59,7 +59,7 @@ bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
 int current_model=8;
-std::string current_model_string = "wing";
+std::string current_model_string = "wing_segment";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=true;
 bool rotateModel=true;
@@ -279,7 +279,7 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		}
 		else if (current_model == 8)
 		{
-			current_model_string="wing";
+			current_model_string="wing_segment";
 		}
 		else if (current_model == 9)
 		{
@@ -342,7 +342,6 @@ void displayCallBack()
 	}
 
 	executeViewControl (yaw2, pitch2);
-	//drawAxesAndGridLines();
 
 	GLfloat light0_position[] = {-2,2,2,1};
 	GLfloat light0_diffuse[] = {0.6,0.6,0.5,1};
@@ -356,7 +355,6 @@ void displayCallBack()
 	glLightfv(GL_LIGHT0,GL_DIFFUSE, light0_diffuse);
 	glLightfv(GL_LIGHT0,GL_SPECULAR, light0_specular);
 	glEnable(GL_LIGHT0);
-	//glEnable(GL_LIGHT1);
 
 	glMaterialfv(GL_FRONT,GL_SPECULAR,material_specular);
 	glMaterialf(GL_FRONT,GL_SHININESS,25);	
@@ -369,8 +367,7 @@ void displayCallBack()
 		glVertex3f(0,0,0);
 		glVertex3f(light0_position[0],light0_position[1],light0_position[2]);
 		glEnd();
-		if(lighting)
-			glEnable(GL_LIGHTING);
+		glEnable(GL_LIGHTING);
 	}
 	
 	executeViewControl (yaw, pitch);
