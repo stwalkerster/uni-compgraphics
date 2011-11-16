@@ -3,7 +3,7 @@
 
 void drawNose()
 {glPushMatrix();
-	glTranslatef(0,-0.5,-0.25);
+	glTranslatef(0,0,0.25);
 	glRotatef(-90,0,1,0);
 	
 	drawU();

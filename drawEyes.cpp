@@ -3,12 +3,10 @@
 
 void drawEyes()
 {glPushMatrix();
-	glTranslatef(0,-0.5,-0.25);
-	glRotatef(-90,0,1,0);
+
+	glRotatef(90,0,0,1);
 	
-	drawS();
-	
-	int steps = 30;
+		int steps = 30;
 	for(int i = 0; i<steps;i++)
 	{
 		glPushMatrix();
