@@ -41,12 +41,13 @@
 #include "wing.h"
 #include "Ear.h"
 #include "drawNose.h"
+#include "drawEyes.h"
 
 #if defined WIN32
 #include "stdafx.h"
 #endif
 
-#define NUMBER_OF_MODELS 10
+#define NUMBER_OF_MODELS 11
 //======================================================
 // GLOBAL VARIABLES
 //======================================================
@@ -290,9 +291,13 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		{
 			current_model_string="nose";
 		}
+		else if (current_model == 11)
+		{
+			current_model_string="eyes";
+		}
 		break;
 	case 't':
-		current_model=11;
+		current_model=12;
 		current_model_string="teapot";
 		break;
 	case 'p':
@@ -412,6 +417,9 @@ void displayCallBack()
 			drawNose();
 			break;
 		case 11:
+			drawEyes();
+			break;
+		case 12:
 			glColor3f(1,1,1);
 			glutSolidTeapot(1);
 			break;
