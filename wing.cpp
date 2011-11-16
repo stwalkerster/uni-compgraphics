@@ -12,7 +12,7 @@ void wing(int segments, int angle)
 		if(segments != 0)
 		{
 			glTranslatef(-1.75,0,0);
-			glRotatef(angle,1,0,0);
+			glRotatef(angle,0,1,0);
 			wing(segments-1,angle);
 		}
 	glPopMatrix();
