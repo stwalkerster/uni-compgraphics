@@ -38,13 +38,14 @@
 #include "drawU.h"
 
 #include "test.h"
+#include "wing.h"
 #include "Ear.h"
 
 #if defined WIN32
 #include "stdafx.h"
 #endif
 
-#define NUMBER_OF_MODELS 8
+#define NUMBER_OF_MODELS 9
 //======================================================
 // GLOBAL VARIABLES
 //======================================================
@@ -58,7 +59,7 @@ bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
 int current_model=8;
-std::string current_model_string = "teapot";
+std::string current_model_string = "wing";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=true;
 bool rotateModel=true;
@@ -278,11 +279,15 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		}
 		else if (current_model == 8)
 		{
+			current_model_string="wing";
+		}
+		else if (current_model == 9)
+		{
 			current_model_string="ear";
 		}
 		break;
 	case 't':
-		current_model=9;
+		current_model=10;
 		current_model_string="teapot";
 		break;
 	case 'p':
@@ -393,9 +398,12 @@ void displayCallBack()
 			test();
 			break;
 		case 8:
-			drawEar();
+			wing();
 			break;
 		case 9:
+			drawEar();
+			break;
+		case 10:
 			glColor3f(1,1,1);
 			glutSolidTeapot(1);
 			break;
