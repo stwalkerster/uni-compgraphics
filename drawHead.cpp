@@ -27,7 +27,7 @@ void drawHead()
 	glPushMatrix();
 		glTranslatef(0,-0.4,1.5);
 		//glRotatef(0,0,0,1);
-		glScalef(0.4,0.3,0.6);
+		glScalef(0.4,0.3,1.8);
 		drawNose();
 	glPopMatrix();
 	
