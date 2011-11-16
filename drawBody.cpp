@@ -1,6 +1,8 @@
 #include "drawHead.h"
 #include "drawOval.h"
 #include "drawT.h"
+#include "wing.h"
+#include "main.h"
 #include <GL/glut.h>
 
 void drawBody()
@@ -22,5 +24,16 @@ void drawBody()
 		glRotatef(-90,0,0,1);
 		glScalef(0.5,0.5,0.5);
 		drawT();
+	glPopMatrix();
+	
+	glPushMatrix();
+		glRotatef(-90,1,0,0);
+		wing(5, wingAngle);
+	glPopMatrix();
+	
+	glPushMatrix();
+		glScalef(-1,1,1);
+		glRotatef(-90,1,0,0);
+		wing(5, wingAngle);
 	glPopMatrix();
 glPopMatrix();}
