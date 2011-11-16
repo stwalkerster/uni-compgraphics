@@ -45,11 +45,13 @@
 #include "drawOval.h"
 #include "drawHead.h"
 
+#include "drawBody.h"
+
 #if defined WIN32
 #include "stdafx.h"
 #endif
 
-#define NUMBER_OF_MODELS 13
+#define NUMBER_OF_MODELS 14
 //======================================================
 // GLOBAL VARIABLES
 //======================================================
@@ -62,8 +64,8 @@ float pitch0, yaw0;
 bool MousePressed;
 int mouseX0, mouseY0;
 bool rotating=false;
-int current_model=13;
-std::string current_model_string = "head";
+int current_model=14;
+std::string current_model_string = "body";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=true;
 bool rotateModel=true;
@@ -305,6 +307,10 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		{
 			current_model_string="head";
 		}
+		else if (current_model == 14)
+		{
+			current_model_string="body";
+		}
 		break;
 	case 't':
 		current_model=0;
@@ -434,6 +440,9 @@ void displayCallBack()
 			break;
 		case 13:
 			drawHead();
+			break;
+		case 14:
+			drawBody();
 			break;
 		case 0:
 			glColor3f(1,1,1);
