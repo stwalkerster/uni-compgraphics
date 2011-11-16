@@ -5,37 +5,16 @@
 
 void wingseg();
 
-void wing()
+void wing(int segments, int angle)
 {
 	glPushMatrix();
-		glScalef(0.5,0.5,0.5);
 		wingseg();
-		glTranslatef(-1.75,0,0);
-		wingseg();
-		glTranslatef(-1.75,0,0);
-		wingseg();
-		glTranslatef(-1.75,0,0);
-		wingseg();
-		glTranslatef(-1.75,0,0);
-		wingseg();
-		glTranslatef(-1.75,0,0);
-		wingseg();
-	glPopMatrix();
-	
-	glPushMatrix();
-		glScalef(-1,1,1);
-		glScalef(0.5,0.5,0.5);
-		wingseg();
-		glTranslatef(-1.75,0,0);
-		wingseg();
-		glTranslatef(-1.75,0,0);
-		wingseg();
-		glTranslatef(-1.75,0,0);
-		wingseg();
-		glTranslatef(-1.75,0,0);
-		wingseg();
-		glTranslatef(-1.75,0,0);
-		wingseg();
+		if(segments != 0)
+		{
+			glTranslatef(-1.75,0,0);
+			glRotatef(angle,1,0,0);
+			wing(segments-1,angle);
+		}
 	glPopMatrix();
 }
 

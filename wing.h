@@ -1,1 +1,1 @@
-extern void wing();
+extern void wing(int, int);

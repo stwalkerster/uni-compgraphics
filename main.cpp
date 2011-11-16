@@ -68,6 +68,7 @@ bool rotateModel=true;
 bool perspective=false;
 int vpW=0, vpH=0;
 bool lighting = false;
+int wingAngle = 0;
 
 //======================================================
 // Prototypes
@@ -310,6 +311,8 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
 	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
 	case 'z': x_z_display++; if(x_z_display>1) x_z_display=0; break;
+	case 'q': wingAngle+=10;break;
+	case 'a': wingAngle-=10;break;
 	default:
 		help();
 	}
@@ -408,7 +411,7 @@ void displayCallBack()
 			test();
 			break;
 		case 8:
-			wing();
+			wing(5, wingAngle);
 			break;
 		case 9:
 			drawEar();
