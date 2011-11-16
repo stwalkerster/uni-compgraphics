@@ -15,4 +15,12 @@ void drawBody()
 		glScalef(0.7,0.7,0.7);
 		drawHead();
 	glPopMatrix();
+	
+	glPushMatrix();
+		glTranslatef(0,0,-2.8);
+		glRotatef(-90,0,1,0);
+		glRotatef(-90,0,0,1);
+		glScalef(0.5,0.5,0.5);
+		drawT();
+	glPopMatrix();
 glPopMatrix();}
