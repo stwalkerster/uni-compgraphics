@@ -17,19 +17,38 @@ void drawHead()
 	
 	//eyes
 	glPushMatrix();
-		glTranslatef(0,0.7,1.5);
+		glTranslatef(0,0.8,1.5);
 		glRotatef(0,0,0,1);
-		glScalef(0.4,0.4,0.4);
+		glScalef(0.3,0.3,0.3);
 		drawEyes();
 	glPopMatrix();
 	
 	//nose
 	glPushMatrix();
-		glTranslatef(0,-0.3,1.5);
+		glTranslatef(0,-0.4,1.5);
 		//glRotatef(0,0,0,1);
-		glScalef(0.4,0.3,0.4);
+		glScalef(0.4,0.3,0.6);
 		drawNose();
 	glPopMatrix();
 	
+	float ear_angle = 35;
+	
+	//lear
+	glPushMatrix();
+		glRotatef(ear_angle,0,0,1);
+		glTranslatef(0,1.6,0);
+		//glRotatef(0,0,0,1);
+		glScalef(0.4,0.4,0.4);
+		drawEar();
+	glPopMatrix();
+	
+	//rear
+	glPushMatrix();
+		glRotatef(-ear_angle,0,0,1);
+		glTranslatef(0,1.6,0);
+		//glRotatef(0,0,0,1);
+		glScalef(0.4,0.4,0.4);
+		drawEar();
+	glPopMatrix();
 	
 }
