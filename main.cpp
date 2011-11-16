@@ -361,15 +361,18 @@ void displayCallBack()
 	glMaterialfv(GL_FRONT,GL_SPECULAR,material_specular);
 	glMaterialf(GL_FRONT,GL_SHININESS,25);	
 
-	glDisable(GL_LIGHTING);
-	glColor3f(1,1,1);
-	glBegin(GL_LINES);
-	glVertex3f(0,0,0);
-	glVertex3f(light0_position[0],light0_position[1],light0_position[2]);
-	glEnd();
 	if(lighting)
-		glEnable(GL_LIGHTING);
-
+	{
+		glDisable(GL_LIGHTING);
+		glColor3f(1,1,1);
+		glBegin(GL_LINES);
+		glVertex3f(0,0,0);
+		glVertex3f(light0_position[0],light0_position[1],light0_position[2]);
+		glEnd();
+		if(lighting)
+			glEnable(GL_LIGHTING);
+	}
+	
 	executeViewControl (yaw, pitch);
 	drawAxesAndGridLines();
 
