@@ -39,7 +39,7 @@ void draw3Dcurve(double depth, double r1, double r2, double theta_start, double 
 
 	glBegin(GL_LINES);
 	glColor3f(0,0,0);
-	for(thet=theta_start; thet<=theta_stop;thet+=theta_inc) {
+	for(thet=theta_start; thet<theta_stop;thet+=theta_inc) {
 		x=cos(c*thet)*r2; y=sin(c*thet)*r2; glVertex3d(x,y,z);
 		x=cos(c*(thet+theta_inc))*r2; y=sin(c*(thet+theta_inc))*r2; glVertex3d(x,y,z);
 		
@@ -61,7 +61,7 @@ void draw3Dcurve(double depth, double r1, double r2, double theta_start, double 
 
 	glBegin(GL_LINES);
 	glColor3f(0,0,0);
-	for(thet=theta_start; thet<=theta_stop;thet+=theta_inc) {
+	for(thet=theta_start; thet<theta_stop;thet+=theta_inc) {
 		x=cos(c*thet)*r2; y=sin(c*thet)*r2; glVertex3d(x,y,z);
 		x=cos(c*(thet+theta_inc))*r2; y=sin(c*(thet+theta_inc))*r2; glVertex3d(x,y,z);
 		
