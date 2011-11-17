@@ -73,6 +73,8 @@ bool perspective=false;
 int vpW=0, vpH=0;
 bool lighting = false;
 int wingAngle = 0;
+int wingAngleIncrement = 1;
+int wingAngleMax = 10;
 
 //======================================================
 // Prototypes
@@ -137,14 +139,22 @@ void drawAxesAndGridLines(void)
 		glEnable(GL_LIGHTING);
 }
 
+void idleCallBack (){
+	if(abs(wingAngle) < wingAngleMax) 
+	{ // less
+		wingAngle += wingAngleIncrement;
+	}
+	else
+	{ // equal or above, 
+		wingAngleIncrement *=-1;
+		wingAngle += wingAngleIncrement;
+	}
+    glutPostRedisplay();
+}
+
 //======================================================
 // VIEW CONTROL ROUTINES
 //======================================================
-
-void idleCallBack (){
-	yaw=yaw+.25;
-    glutPostRedisplay();
-}
 
 void rotateView(bool r){
 	rotating = r;
@@ -152,7 +162,6 @@ void rotateView(bool r){
 }
 
 void resetView(){
-	rotateView(false); //Stop view rotation
 	yaw=pitch=0;
 }
 
@@ -167,7 +176,6 @@ void mouseClickCallBack(int button, int state, int x, int y) {
     {
 		case GLUT_DOWN:
 			MousePressed = true;
-			rotateView(false);
 			if(rotateModel)
 			{
 				pitch0 = pitch; yaw0 = yaw;

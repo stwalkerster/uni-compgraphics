@@ -6,7 +6,11 @@
 #include <GL/glut.h>
 
 void drawBody()
-{glPushMatrix();
+{
+	glPushMatrix();
+	
+	glScalef(0.5,0.5,0.5);
+	
 	glPushMatrix();
 		glRotatef(90,1,0,0);
 		drawOval();
@@ -36,4 +40,5 @@ void drawBody()
 		glRotatef(-90,1,0,0);
 		wing(5, wingAngle);
 	glPopMatrix();
+	
 glPopMatrix();}
