@@ -30,13 +30,16 @@ void drawBody()
 		drawT();
 	glPopMatrix();
 	
+	glTranslatef(0,0,1);
+	
 	glPushMatrix();
-		glRotatef(-90,1,0,0);
+		glRotatef(90,1,0,0);
+		glScalef(1,1,-1);
 		wing(5, wingAngle);
 	glPopMatrix();
 	
 	glPushMatrix();
-		glScalef(-1,1,1);
+		glScalef(-1,1,-1);
 		glRotatef(-90,1,0,0);
 		wing(5, wingAngle);
 	glPopMatrix();
