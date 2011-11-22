@@ -28,7 +28,7 @@ void draw3Dcurve(double depth, double r1, double r2, double theta_start, double 
 	
 	// draw rear face (away from viewer)
 	//glColor3f(1.0, 0.1, 1.0);
-	glColor3f(1.0, 1.0, 1.0);
+	//glColor3f(1.0, 1.0, 1.0);
 	z=z_back;
 	glBegin(GL_QUAD_STRIP);
 	for(thet=theta_start; thet<=theta_stop;thet+=theta_inc) {
@@ -38,7 +38,7 @@ void draw3Dcurve(double depth, double r1, double r2, double theta_start, double 
 	glEnd();
 
 	glBegin(GL_LINES);
-	glColor3f(0,0,0);
+	//glColor3f(0,0,0);
 	for(thet=theta_start; thet<theta_stop;thet+=theta_inc) {
 		x=cos(c*thet)*r2; y=sin(c*thet)*r2; glVertex3d(x,y,z);
 		x=cos(c*(thet+theta_inc))*r2; y=sin(c*(thet+theta_inc))*r2; glVertex3d(x,y,z);
@@ -50,7 +50,7 @@ void draw3Dcurve(double depth, double r1, double r2, double theta_start, double 
 
 	// draw front face (closer to viewer)
 	//glColor3f(1.0, 0.2, 0.2);
-	glColor3f(1.0, 1.0, 1.0);
+	//glColor3f(1.0, 1.0, 1.0);
 	z=z_front;
 	glBegin(GL_QUAD_STRIP);
 	for(thet=theta_start; thet<=theta_stop;thet+=theta_inc)	{
@@ -60,7 +60,7 @@ void draw3Dcurve(double depth, double r1, double r2, double theta_start, double 
 	glEnd();
 
 	glBegin(GL_LINES);
-	glColor3f(0,0,0);
+	//glColor3f(0,0,0);
 	for(thet=theta_start; thet<theta_stop;thet+=theta_inc) {
 		x=cos(c*thet)*r2; y=sin(c*thet)*r2; glVertex3d(x,y,z);
 		x=cos(c*(thet+theta_inc))*r2; y=sin(c*(thet+theta_inc))*r2; glVertex3d(x,y,z);
@@ -73,7 +73,7 @@ void draw3Dcurve(double depth, double r1, double r2, double theta_start, double 
 
 	// draw upper face
 	//glColor3f(0.0, 0.0, 1.0);
-	glColor3f(1.0, 1.0, 1.0);
+	//glColor3f(1.0, 1.0, 1.0);
 	glBegin(GL_QUAD_STRIP);
 	for(thet=theta_start; thet<=theta_stop;thet+=theta_inc) {
 		x=cos(c*thet)*r2; y=sin(c*thet)*r2;
@@ -93,7 +93,7 @@ void draw3Dcurve(double depth, double r1, double r2, double theta_start, double 
 
 	// draw bottom end
 	//glColor3f(0.0, 1.0, 1.0);
-	glColor3f(1.0, 1.0, 1.0);
+	//glColor3f(1.0, 1.0, 1.0);
 	glBegin(GL_POLYGON);
 		x1=cos(c*theta_start)*r1; y1=sin(c*theta_start)*r1;
 		x2=cos(c*theta_start)*r2; y2=sin(c*theta_start)*r2;

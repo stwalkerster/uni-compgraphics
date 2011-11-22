@@ -9,6 +9,7 @@ void drawHead()
 {
 	//head
 	glPushMatrix();
+	glColor3f(1,0.5,0.5);
 		glTranslatef(0,0,0);
 		glRotatef(90,1,0,0);
 		glScalef(1,0.5,1);
@@ -17,6 +18,7 @@ void drawHead()
 	
 	//eyes
 	glPushMatrix();
+	glColor3f(0,0,0);
 		glTranslatef(0,0.8,1.5);
 		glRotatef(0,0,0,1);
 		glScalef(0.3,0.3,0.3);
@@ -25,6 +27,7 @@ void drawHead()
 	
 	//nose
 	glPushMatrix();
+	glColor3f(1,0.5,0.5);
 		glTranslatef(0,-0.4,1.5);
 		//glRotatef(0,0,0,1);
 		glScalef(0.4,0.3,1.8);
