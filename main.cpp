@@ -380,30 +380,23 @@ void displayCallBack()
 
 	executeViewControl (yaw2, pitch2);
 
-	//GLfloat light0_position[] = {-2,2,2,1};
-	GLfloat light0_position[] = {-5,5,5,1};
-	//GLfloat light0_diffuse[] = {0.6,0.6,0.5,1};
-	GLfloat light0_diffuse[] = {0.2,0.2,0.2,1};
-	//GLfloat light0_specular[] = {1,1,1,1};
-	GLfloat light0_specular[] = {0.3,0.3,0.3,1};
-	//GLfloat lightscene_ambience[] = {0.1,0.1,0.1,1};
-	
-	
-	GLfloat lightscene_ambience[] = {0.4,0.4,0.4,1};
-	GLfloat material_specular[] = {0.2,0.2,0.2,0.1};
+GLfloat light0_position[] = {-2,2,2,1};
+GLfloat light0_diffuse[] = {0.7,0.7,0.7,1};
+GLfloat light0_specular[] = {0.9,0.9,0.9,1};
+GLfloat lightscene_ambience[] = {0.4,0.4,0.4,1};
+GLfloat material_specular[] = {1,1,1,1};
 
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT,lightscene_ambience);
+glLightModelfv(GL_LIGHT_MODEL_AMBIENT,lightscene_ambience);
 
-	glLightfv(GL_LIGHT0,GL_POSITION, light0_position);
-	glLightfv(GL_LIGHT0,GL_DIFFUSE, light0_diffuse);
-	glLightfv(GL_LIGHT0,GL_SPECULAR, light0_specular);
-	glEnable(GL_LIGHT0);
-	
+glLightfv(GL_LIGHT0,GL_POSITION, light0_position);
+glLightfv(GL_LIGHT0,GL_DIFFUSE, light0_diffuse);
+glLightfv(GL_LIGHT0,GL_SPECULAR, light0_specular);
+glEnable(GL_LIGHT0);
 
-	glMaterialfv(GL_FRONT,GL_SPECULAR,material_specular);
-	glMaterialf(GL_FRONT,GL_SHININESS,0);	
+glMaterialfv(GL_FRONT,GL_SPECULAR,material_specular);
+glMaterialf(GL_FRONT,GL_SHININESS,25); 
 
-	if(lighting)
+	/*if(lighting)
 	{
 		glDisable(GL_LIGHTING);
 		glColor3f(1,1,1);
@@ -412,11 +405,12 @@ void displayCallBack()
 		glVertex3f(light0_position[0],light0_position[1],light0_position[2]);
 		glEnd();
 		glEnable(GL_LIGHTING);
-	}
+	}*/
 	
 	executeViewControl (yaw, pitch);
 	drawAxesAndGridLines();
 
+	glColor3f(1,1,1);
 
 	switch(current_model)
 	{
@@ -470,6 +464,8 @@ void displayCallBack()
 			printf("Unknown model\n");
 	}
 
+	glLoadIdentity();
+
 	glutSwapBuffers();
 }
 
@@ -500,6 +496,8 @@ int main(int argc, char** argv)
 	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	glEnable(GL_DEPTH_TEST); /* Enable hidden--surface--removal */
 	glEnable( GL_COLOR_MATERIAL );
+
+	glEnable( GL_NORMALIZE);
 
 	help();
 
