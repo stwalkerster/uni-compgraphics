@@ -59,12 +59,10 @@
 static double theta_stop1 = 270;
 float pitch = 0.0f;
 float yaw = 0.0f;
-float pitch2 = 0.0f;
-float yaw2 = 0.0f;
 float pitch0, yaw0;
 bool MousePressed;
 int mouseX0, mouseY0;
-bool rotating=false;
+bool animation=false;
 int current_model=14;
 std::string current_model_string = "body";
 int x_y_display=0, y_z_display=0, x_z_display=0;
@@ -157,8 +155,8 @@ void idleCallBack (){
 // VIEW CONTROL ROUTINES
 //======================================================
 
-void rotateView(bool r){
-	rotating = r;
+void animateView(bool r){
+	animation = r;
 	if (r) glutIdleFunc(idleCallBack); else glutIdleFunc(NULL);
 }
 
@@ -177,21 +175,14 @@ void mouseClickCallBack(int button, int state, int x, int y) {
     {
 		case GLUT_DOWN:
 			MousePressed = true;
-			if(rotateModel)
-			{
-				pitch0 = pitch; yaw0 = yaw;
-				mouseX0 = x; mouseY0 = y;
-			}
-			else
-			{
-				pitch0 = pitch2; yaw0 = yaw2;
-				mouseX0 = x; mouseY0 = y;
-			}
+			
+			pitch0 = pitch; yaw0 = yaw;
+			mouseX0 = x; mouseY0 = y;
 			break;
 		default:
 		case GLUT_UP:
 			MousePressed = false;
-			//rotateView(true);
+			//animateView(true);
 			break;
     }
 } 
@@ -199,16 +190,9 @@ void mouseClickCallBack(int button, int state, int x, int y) {
 void mouseMotionCallBack(int x, int y) 
 {
 	// Called when the Mouse is moved with left button down
-	if(rotateModel)
-	{
-		pitch = pitch0 + (y - mouseY0);
-		yaw = yaw0 + (x - mouseX0);
-	}
-	else
-	{
-		pitch2 = pitch0 + (y - mouseY0);
-		yaw2 = yaw0 + (x - mouseX0);
-	}
+	pitch = pitch0 + (y - mouseY0);
+	yaw = yaw0 + (x - mouseX0);
+	
 	glutPostRedisplay();
 } 
 
@@ -254,9 +238,9 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	case 'l':
 		lighting = !lighting;
 		break;
-	case 'r': 
-		rotating= !rotating;
-		rotateView(rotating);
+	case 'a': 
+		animation= !animation;
+		animateView(animation);
 		break;
 	case 'R':
         	resetView();
@@ -330,14 +314,11 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		perspective=!perspective;
 		reshapeCallBack(vpW, vpH);
 		break;
-	case 'v':
-		rotateModel=!rotateModel;
-		break;
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
 	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
 	case 'z': x_z_display++; if(x_z_display>1) x_z_display=0; break;
-	case 'q': if(wingAngle < wingAngleMax) wingAngle+=1;break;
-	case 'a': if((-wingAngle) < wingAngleMax) wingAngle-=1;break;
+	case '=': if(wingAngle < wingAngleMax) wingAngle+=1;break;
+	case '-': if((-wingAngle) < wingAngleMax) wingAngle-=1;break;
 	default:
 		help();
 	}
@@ -378,8 +359,6 @@ void displayCallBack()
 		}
 		glEnable(GL_LIGHTING);
 	}
-
-	executeViewControl (yaw2, pitch2);
 
 	GLfloat light0_position[] = {-2,2,2,1};
 	GLfloat light0_diffuse[] = {0.7,0.7,0.7,1};
@@ -486,7 +465,7 @@ int main(int argc, char** argv)
 	// Add Display & Mouse CallBacks
 	glutReshapeFunc(reshapeCallBack);
 	glutDisplayFunc(displayCallBack);
-	glutIdleFunc(NULL); // Starts the Idle Function as having no routine attached to it. This is modified in rotateView()
+	glutIdleFunc(NULL); // Starts the Idle Function as having no routine attached to it. This is modified in animateView()
 	glutMouseFunc(mouseClickCallBack);
     glutMotionFunc(mouseMotionCallBack);
 	glutKeyboardFunc(keyboardCallBack);
