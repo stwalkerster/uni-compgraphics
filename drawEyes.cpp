@@ -6,7 +6,7 @@ void drawEyes()
 
 	glRotatef(90,0,0,1);
 	
-		int steps = 30;
+		int steps = 10;
 	for(int i = 0; i<steps;i++)
 	{
 		glPushMatrix();

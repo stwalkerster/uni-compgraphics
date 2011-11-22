@@ -17,7 +17,7 @@ glPushMatrix();
 
 	glTranslatef(0,-2,0);
 	
-	int steps = 24;
+	int steps = 18;
 	for(int i = 0; i<steps;i++)
 	{
 		glPushMatrix();
