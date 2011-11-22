@@ -335,8 +335,8 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
 	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
 	case 'z': x_z_display++; if(x_z_display>1) x_z_display=0; break;
-	case 'q': wingAngle+=1;break;
-	case 'a': wingAngle-=1;break;
+	case 'q': if(wingAngle < wingAngleMax) wingAngle+=1;break;
+	case 'a': if(abs(wingAngle) < wingAngleMax) wingAngle-=1;break;
 	default:
 		help();
 	}
