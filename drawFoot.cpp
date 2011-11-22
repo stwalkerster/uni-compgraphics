@@ -28,8 +28,8 @@ void drawFoot()
 	glColor3f(1,.5,.5);
 	
 	glPushMatrix();
-		glScalef(1,3,1);
-		glTranslatef(0,1.5,0);
+		glScalef(1,3,1.05);
+		glTranslatef(0,1.6,0);
 		glRotatef(90,0,1,0);
 		test();
 	glPopMatrix();
