@@ -1,27 +1,22 @@
-
-// Example_8_1.cpp : Rotating Wire-Frame 3D Curve
-//
-// Author  : Mike Chantler
-// Date    : 29/04/2008
-// Version : 1.1 - Commenting changed to match other examples style
+// Author  : Simon Walker - Vasileios Spyridakis
+// Date    : 22/11/2011
+// Version : 3c975f816499732c2100c1ce0ce2842b9d617378
 //
 // Program behaviour:
 // Mouse Button & Drag - Changes the View Point.
-// Key "b" - Back Fill
-// Key "f" - Front Fill
-// Key "l" - Wire Frame/Line Fill
-// Key "i" - Increment Sections of Curve
-// Key "d" - Decrement Sections of Curve
-// Key "r" - Automated Rotation
-// Key "R" - Reset the View
-//
-// Callback commentary sent to normal command window.
-//
-// Last tested in Visual C++ 2010 Express
-
-/*
- * draw is once solid then change draw mode and redraw it. remove color from 3dcurve to be able to draw it once in white then in black
- */
+// Key "F3" - Toggle OSD
+// Key "w"  - Wire Frame
+// Key "f"  - Fill
+// Key "a"  - Toggle animation
+// Key "="  - Raise wings
+// Key "-"  - Lower wings
+// Key "R"  - Reset the View
+// Key "m"  - Cycle models
+// Key "p"  - Toggle prespective
+// Key "l"  - Toggle lighting
+// Key "x"  - Toggle x axis
+// Key "y"  - Toggle y axis
+// Key "z"  - Toggle z axis
 
 #include <stdlib.h>
 #include <GL/glut.h>
@@ -29,30 +24,31 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
-
+#include "3DCurve.h"
+#include "Cube.h"
 #include "drawS.h"
-#include "drawV.h"
-#include "drawX.h"
 #include "drawT.h"
-#include "drawW.h"
 #include "drawU.h"
-
-#include "test.h"
-#include "wing.h"
+#include "drawV.h"
+#include "drawW.h"
+#include "drawX.h"
 #include "Ear.h"
-#include "drawNose.h"
 #include "drawEyes.h"
+#include "drawNose.h"
 #include "drawOval.h"
+#include "Ucube.h"
+#include "wing.h"
 #include "drawHead.h"
+#include "test.h"
 #include "drawFoot.h"
-
 #include "drawBody.h"
 
 #if defined WIN32
 #include "stdafx.h"
 #endif
 
-#define NUMBER_OF_MODELS 14
+#define NUMBER_OF_MODELS 19
+
 //======================================================
 // GLOBAL VARIABLES
 //======================================================
@@ -63,7 +59,7 @@ float pitch0, yaw0;
 bool MousePressed;
 int mouseX0, mouseY0;
 bool animation=false;
-int current_model=14;
+int current_model=19;
 std::string current_model_string = "body";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=true;
@@ -251,64 +247,84 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		if (current_model > NUMBER_OF_MODELS) current_model = 1;
 		if (current_model == 1)
 		{
-			current_model_string="S";
+			current_model_string="Cube";
 		}
 		else if (current_model == 2)
 		{
-			current_model_string="V";
+			current_model_string="Curve";
 		}
 		else if (current_model == 3)
 		{
-			current_model_string="X";
+			current_model_string="Letter S";
 		}
 		else if (current_model == 4)
 		{
-			current_model_string="t";
+			current_model_string="Letter t";
 		}
 		else if (current_model == 5)
 		{
-			current_model_string="W";
+			current_model_string="Letter u";
 		}
 		else if (current_model == 6)
 		{
-			current_model_string="U";
+			current_model_string="Letter V";
 		}
 		else if (current_model == 7)
 		{
-			current_model_string="foot";
+			current_model_string="Letter w";
 		}
 		else if (current_model == 8)
 		{
-			current_model_string="wing_segment";
+			current_model_string="Letter x";
 		}
 		else if (current_model == 9)
 		{
-			current_model_string="ear";
+			current_model_string="Ear";
 		}
 		else if (current_model == 10)
 		{
-			current_model_string="nose";
+			current_model_string="Eyes";
 		}
 		else if (current_model == 11)
 		{
-			current_model_string="eyes";
+			current_model_string="Nose";
 		}
 		else if (current_model == 12)
 		{
-			current_model_string="oval";
+			current_model_string="Oval";
 		}
 		else if (current_model == 13)
 		{
-			current_model_string="head";
+			current_model_string="Ucube slice";
 		}
 		else if (current_model == 14)
 		{
-			current_model_string="body";
+			current_model_string="Wing segment";
+		}
+		else if (current_model == 15)
+		{
+			current_model_string="Head";
+		}
+		else if (current_model == 16)
+		{
+			current_model_string="Ucube";
+		}
+		else if (current_model == 17)
+		{
+			current_model_string="Wing";
+		}
+		else if (current_model == 18)
+		{
+			current_model_string="Foot";
+		}
+		else if (current_model == 19)
+		{
+			current_model_string="Pig";
 		}
 		break;
 	case 't':
 		current_model=0;
-		current_model_string="teapot";
+		current_model_string="Teapot";
 		break;
 	case 'p':
 		perspective=!perspective;
@@ -330,7 +346,7 @@ void minecraftStyle(int key, int x, int y)
 	if (key == GLUT_KEY_F3)
 	{
 		F3pressed = !F3pressed;
-		std::cout << "Current model : current_model_string=" << current_model_string << "\n";
+		std::cout << "Current model : " << current_model_string << "\n";
 	}
 	glutPostRedisplay();
 
@@ -351,7 +367,7 @@ void displayCallBack()
 		glColor3f(1,1,1);
 		glRasterPos3f (-3.4, 2.85, 0);
 
-		std::string displayString = "Current model : current_model_string=" + current_model_string;
+		std::string displayString = "Current model : " + current_model_string;
 
 		for(unsigned int i = 0; i < displayString.size() ; i++)
 		{
@@ -395,45 +411,66 @@ void displayCallBack()
 	switch(current_model)
 	{
 		case 1:
-			drawS();
+			cube();
 			break;
 		case 2:
-			drawV();
+			draw3Dcurve  (1.0,          //depth  
+					  1.5,          //inner radius
+					  2.0,          //outer radius
+					  0.0,          //start angle //0.0
+					  270,  		//stop angle
+					  5.0);         //anular increments
 			break;
 		case 3:
-			drawX();
+			drawS();
 			break;
 		case 4:
 			drawT();
 			break;
 		case 5:
-			drawW();
-			break;
-		case 6:
 			drawU();
 			break;
+		case 6:
+			drawV();
+			break;
 		case 7:
-			drawFoot();
+			drawW();
 			break;
 		case 8:
-			wing(5, wingAngle);
+			drawX();
 			break;
 		case 9:
 			drawEar();
 			break;
 		case 10:
-			drawNose();
+			drawEyes();
 			break;
 		case 11:
-			drawEyes();
+			drawNose();
 			break;
 		case 12:
 			drawOval();
 			break;
 		case 13:
-			drawHead();
+			Ucube();
 			break;
 		case 14:
+			wingseg();
+			break;
+		case 15:
+			drawHead();
+			break;
+		case 16:
+			test();
+			break;
+		case 17:
+			glScalef(0.2,0.2,0.2);
+			wing(5, wingAngle);
+			break;
+		case 18:
+			drawFoot();
+			break;
+		case 19:
 			drawBody();
 			break;
 		case 0:
@@ -445,7 +482,6 @@ void displayCallBack()
 	}
 
 	glLoadIdentity();
-
 	glutSwapBuffers();
 }
 
