@@ -512,14 +512,18 @@ void help()
 	// Print Application Usage
 	printf("Program Controls:\n");
 	printf("Left Mouse Button & Drag - Changes the View.\n");
-	printf("Key \"f\"  - Fill.\n");
-	printf("Key \"w\"  - Wire Frame.\n");
-	printf("Key \"r\"  - Automated Rotation.\n");
-	printf("Key \"R\"  - Reset the View.\n");
-	printf("Key \"l\"  - Toggle lighting.\n");
-	printf("Key \"m\"  - Cycle models.\n");
-	printf("Key \"t\"  - Show Teapot.\n");
-	printf("Key \"p\"  - Toggle perspective.\n");
-	printf("Key \"v\"  - Toggle rotation mode (scene/view).\n");
 	printf("Key \"F3\" - Toggle OSD.\n");
+	printf("Key \"w\"  - Wire Frame.\n");
+	printf("Key \"f\"  - Fill.\n");
+	printf("Key \"a\"  - Automated Rotation.\n");
+	printf("Key \"=\"  - Raise wings\n");
+	printf("Key \"-\"  - Lower wings\n");
+	printf("Key \"R\"  - Reset the View.\n");
+	printf("Key \"m\"  - Cycle models.\n");
+	printf("Key \"p\"  - Toggle perspective.\n");
+	printf("Key \"l\"  - Toggle lighting.\n");
+	printf("Key \"x\"  - Toggle x axis\n");
+	printf("Key \"y\"  - Toggle y axis\n");
+	printf("Key \"z\"  - Toggle z axis\n");
+	
 }
