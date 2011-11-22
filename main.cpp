@@ -246,7 +246,7 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	switch(key)
 	{
 	case 'f': case 'F':
-		glPolygonMode(GL_FRONT | GL_BACK,GL_FILL);
+		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 		break;
 	case 'w': case 'W':
 		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
@@ -336,8 +336,8 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
 	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
 	case 'z': x_z_display++; if(x_z_display>1) x_z_display=0; break;
-	case 'q': wingAngle+=1;break;
-	case 'a': wingAngle-=1;break;
+	case 'q': if(wingAngle < wingAngleMax) wingAngle+=1;break;
+	case 'a': if(abs(wingAngle) < wingAngleMax) wingAngle-=1;break;
 	default:
 		help();
 	}
@@ -381,21 +381,21 @@ void displayCallBack()
 
 	executeViewControl (yaw2, pitch2);
 
-GLfloat light0_position[] = {-2,2,2,1};
-GLfloat light0_diffuse[] = {0.7,0.7,0.7,1};
-GLfloat light0_specular[] = {0.9,0.9,0.9,1};
-GLfloat lightscene_ambience[] = {0.4,0.4,0.4,1};
-GLfloat material_specular[] = {1,1,1,1};
+	GLfloat light0_position[] = {-2,2,2,1};
+	GLfloat light0_diffuse[] = {0.7,0.7,0.7,1};
+	GLfloat light0_specular[] = {0.9,0.9,0.9,1};
+	GLfloat lightscene_ambience[] = {0.4,0.4,0.4,1};
+	GLfloat material_specular[] = {1,1,1,1};
 
-glLightModelfv(GL_LIGHT_MODEL_AMBIENT,lightscene_ambience);
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT,lightscene_ambience);
 
-glLightfv(GL_LIGHT0,GL_POSITION, light0_position);
-glLightfv(GL_LIGHT0,GL_DIFFUSE, light0_diffuse);
-glLightfv(GL_LIGHT0,GL_SPECULAR, light0_specular);
-glEnable(GL_LIGHT0);
+	glLightfv(GL_LIGHT0,GL_POSITION, light0_position);
+	glLightfv(GL_LIGHT0,GL_DIFFUSE, light0_diffuse);
+	glLightfv(GL_LIGHT0,GL_SPECULAR, light0_specular);
+	glEnable(GL_LIGHT0);
 
-glMaterialfv(GL_FRONT,GL_SPECULAR,material_specular);
-glMaterialf(GL_FRONT,GL_SHININESS,25); 
+	glMaterialfv(GL_FRONT,GL_SPECULAR,material_specular);
+	glMaterialf(GL_FRONT,GL_SHININESS,25); 
 
 	/*if(lighting)
 	{
