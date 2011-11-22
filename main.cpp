@@ -44,6 +44,7 @@
 #include "drawEyes.h"
 #include "drawOval.h"
 #include "drawHead.h"
+#include "drawFoot.h"
 
 #include "drawBody.h"
 
@@ -290,7 +291,7 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		}
 		else if (current_model == 7)
 		{
-			current_model_string="test";
+			current_model_string="foot";
 		}
 		else if (current_model == 8)
 		{
@@ -433,7 +434,7 @@ glMaterialf(GL_FRONT,GL_SHININESS,25);
 			drawU();
 			break;
 		case 7:
-			test();
+			drawFoot();
 			break;
 		case 8:
 			wing(5, wingAngle);

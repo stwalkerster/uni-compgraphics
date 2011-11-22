@@ -3,6 +3,7 @@
 #include "drawT.h"
 #include "wing.h"
 #include "main.h"
+#include "drawFoot.h"
 #include <GL/glut.h>
 
 void drawBody()
@@ -31,20 +32,40 @@ void drawBody()
 		drawT();
 	glPopMatrix();
 	
-	glTranslatef(0,0,1);
-	
 	glPushMatrix();
-	glColor3f(1,0.9,0);
-		glRotatef(90,1,0,0);
-		glScalef(1,1,-1);
-		wing(5, wingAngle);
+		glTranslatef(0,0,1);
+		
+		glPushMatrix();
+		glColor3f(1,0.9,0);
+			glRotatef(90,1,0,0);
+			glScalef(1,1,-1);
+			wing(5, wingAngle);
+		glPopMatrix();
+		
+		glPushMatrix();
+		glColor3f(1,0.9,0);
+			glScalef(-1,1,-1);
+			glRotatef(-90,1,0,0);
+			wing(5, wingAngle);
+		glPopMatrix();
 	glPopMatrix();
 	
+	glColor3f(1,0.5,0.5);
 	glPushMatrix();
-	glColor3f(1,0.9,0);
-		glScalef(-1,1,-1);
-		glRotatef(-90,1,0,0);
-		wing(5, wingAngle);
+		glTranslatef(1,-2.7,2);
+		drawFoot();
+	glPopMatrix();
+	glPushMatrix();
+		glTranslatef(1,-2.7,-2);
+		drawFoot();
+	glPopMatrix();
+	glPushMatrix();
+		glTranslatef(-1,-2.7,2);
+		drawFoot();
+	glPopMatrix();
+	glPushMatrix();
+		glTranslatef(-1,-2.7,-2);
+		drawFoot();
 	glPopMatrix();
 	
 glPopMatrix();}
