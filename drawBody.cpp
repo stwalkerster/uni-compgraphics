@@ -9,7 +9,7 @@ void drawBody()
 {
 	glPushMatrix();
 	
-	glScalef(0.5,0.5,0.5);
+	glScalef(0.37,0.37,0.37);
 	
 	glPushMatrix();
 		glRotatef(90,1,0,0);
