@@ -8,7 +8,7 @@ void drawNose()
 	
 	drawU();
 	
-	int steps = 24;
+	int steps = 18;
 	for(int i = 0; i<steps;i++)
 	{
 		glPushMatrix();

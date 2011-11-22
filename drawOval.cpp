@@ -6,7 +6,8 @@ void drawOval()
 {
 glPushMatrix();
 	drawOvalHalf();
-	glRotatef(180,1,0,0);
+	//glRotatef(180,1,0,0);
+	glScalef(1,-1,1);
 	drawOvalHalf();
 glPopMatrix();	
 }
