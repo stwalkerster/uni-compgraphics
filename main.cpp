@@ -60,7 +60,7 @@ bool MousePressed;
 int mouseX0, mouseY0;
 bool animation=false;
 int current_model=19;
-std::string current_model_string = "body";
+std::string current_model_string = "pig";
 int x_y_display=0, y_z_display=0, x_z_display=0;
 bool F3pressed=true;
 bool rotateModel=true;
