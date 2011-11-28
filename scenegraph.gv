@@ -33,174 +33,56 @@ digraph SceneGraph{
 	drawBody->drawHead;
 	drawBody->drawT;
 	drawBody->wing;
-	drawBody->wing;
-	drawBody->drawFoot;
-	drawBody->drawFoot;
-	drawBody->drawFoot;
 	drawBody->drawFoot;
 
-	drawOval->drawOvalHalf;
 	drawOval->drawOvalHalf;
 	
 	drawHead->drawOval;
 	drawHead->drawEyes;
 	drawHead->drawNose;
 	drawHead->drawEar;
-	drawHead->drawEar;
 	
 	drawT->cube;
 	drawT->draw3Dcurve;
-	drawT->cube;
-	drawT->cube;
 	
 	wing->wingseg;
 	wing->wing;
 	
 	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
-	drawFoot->drawX;
 	drawFoot->test;
 	
 	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
-	drawOvalHalf->drawU;
 	
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
-	drawEyes->drawS;
 	drawEyes->drawS;
 	
 	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
-	drawNose->drawU;
 	
 	drawEar->drawV;
-	drawEar->drawV;
-	drawEar->drawV;
-	drawEar->drawV;
-	drawEar->drawV;
-	drawEar->drawV;
-	drawEar->drawV;
-	drawEar->drawV;
-	drawEar->drawV;
 	
-	cube->polygon;
-	cube->polygon;
-	cube->polygon;
-	cube->polygon;
-	cube->polygon;
 	cube->polygon;
 	
 	wingseg->drawU;
 	wingseg->drawW;
-	wingseg->drawW;
-	wingseg->drawW;
-	wingseg->drawW;
-	wingseg->drawW;
 	
 	drawX->cube;
 	drawX->draw3Dcurve;
-	drawX->draw3Dcurve;
 	
 	test->UCube;
-	test->UCube;
-	test->UCube;
-	test->UCube;
-	test->UCube;
-	test->UCube;
 	
-	drawU->drawStick;
 	drawU->drawStick;
 	drawU->drawLoop;
 	
 	drawS->draw3Dcurve;
 	drawS->cube;
-	drawS->cube;
-	drawS->draw3Dcurve;
 	
 	drawV->cube;
 	drawV->draw3Dcurve;
-	drawV->cube;
 	
 	// polygon
 	
 	drawW->drawStick;
-	drawW->drawStick;
 	drawW->drawLoop;
-	drawW->drawLoop;
-	drawW->drawStick;
 	
-	UCube->drawU;
-	UCube->drawU;
-	UCube->drawU;
 	UCube->drawU;
 	
 	drawStick->cube;
