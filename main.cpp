@@ -507,7 +507,7 @@ int main(int argc, char** argv)
 	glutKeyboardFunc(keyboardCallBack);
 	glutSpecialFunc(minecraftStyle);
 
-	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glClearColor(1.0, 1.0, 1.0, 1.0);
 	glColor3f(1.0, 0.0, 0.0);
 	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	glEnable(GL_DEPTH_TEST); /* Enable hidden--surface--removal */
