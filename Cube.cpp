@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////
+//
+// Cube.cpp - code for Cube model
+// 
+// Author: Mike Chantler
+//
+// Edited by Vasileios Spyridakis & Simon Walker
+//
+////////////////////////////////////////////////////////////////
+
 #include <GL/glut.h>
 #include "Cube.h"
 
@@ -8,20 +18,14 @@ float vertices[][3] =
 		{0.5,-0.5,0.5}, {0.5,0.5,0.5}, {-0.5,0.5,0.5}
 };
 
-/*float colors[][3] = {{0.0,0.5,0.5},{1.0,0.0,0.0},
-	{1.0,1.0,0.0}, {0.0,1.0,0.0}, {0.0,0.0,1.0}, 
-	{1.0,0.0,1.0}, {1.0,1.0,1.0}, {0.0,1.0,1.0}};*/
-	/*float colors[][3] = {{1.0,1.0,1.0},{1.0,1.0,1.0},
-	{1.0,1.0,1.0}, {1.0,1.0,1.0}, {1.0,1.0,1.0}, 
-	{1.0,1.0,1.0}, {1.0,1.0,1.0}, {1.0,1.0,1.0}};*/
-
+// Edit: Removed colours.
 
 void polygon(int a, int b, int c , int d)
 {
 	// draw a polygon using colour of first vertex
 
  	glBegin(GL_POLYGON);
-		//glColor3fv(colors[a]);
+		// Edit: Removed color.
 		glVertex3fv(vertices[a]);
 		glVertex3fv(vertices[b]);
 		glVertex3fv(vertices[c]);
@@ -30,7 +34,7 @@ void polygon(int a, int b, int c , int d)
 	
 	glEnable(GL_LINE_SMOOTH);
 	glBegin(GL_LINE_LOOP);
-		//glColor3f(0,0,0);
+		// Edit: Removed color.
 		glVertex3fv(vertices[a]);
 		glVertex3fv(vertices[b]);
 		glVertex3fv(vertices[c]);

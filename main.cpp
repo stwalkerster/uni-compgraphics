@@ -1,10 +1,16 @@
-// Author  : Simon Walker - Vasileios Spyridakis
+////////////////////////////////////////////////////////////////
+//
+// main.cpp - The main function
+//
+// Author: Mike Chantler
+//
+// Edited by Vasileios Spyridakis & Simon Walker
 // Date    : 22/11/2011
 // Version : 3c975f816499732c2100c1ce0ce2842b9d617378
 //
 // Program behaviour:
 // Mouse Button & Drag - Changes the View Point.
-// Key "F3" - Toggle OSD
+// Key "F3" - Toggle OSD (On Screen Display)
 // Key "w"  - Wire Frame
 // Key "f"  - Fill
 // Key "a"  - Toggle animation
@@ -17,6 +23,8 @@
 // Key "x"  - Toggle x axis
 // Key "y"  - Toggle y axis
 // Key "z"  - Toggle z axis
+//
+////////////////////////////////////////////////////////////////
 
 #include <stdlib.h>
 #include <GL/glut.h>
@@ -60,13 +68,18 @@ bool MousePressed;
 int mouseX0, mouseY0;
 bool animation=false;
 int current_model=19;
+// Model name for OSD
 std::string current_model_string = "pig";
 int x_y_display=0, y_z_display=0, x_z_display=0;
+// OSD toggle
 bool F3pressed=true;
 bool rotateModel=true;
+// Perspective toggle
 bool perspective=false;
 int vpW=0, vpH=0;
+// Lighting toggle
 bool lighting = false;
+// Variables controling animation
 int wingAngle = 0;
 int wingAngleIncrement = 1;
 int wingAngleMax = 10;
@@ -134,12 +147,16 @@ void drawAxesAndGridLines(void)
 		glEnable(GL_LIGHTING);
 }
 
-void idleCallBack (){
+
+//Wing animation
+void idleCallBack ()
+{
+	// Determine if the angle is below the max, if so, increment
 	if(abs(wingAngle) < wingAngleMax) 
 	{ // less
 		wingAngle += wingAngleIncrement;
 	}
-	else
+	else // Otherwise reverse the direction
 	{ // equal or above, 
 		wingAngleIncrement *=-1;
 		wingAngle += wingAngleIncrement;
@@ -200,8 +217,10 @@ void reshapeCallBack(int w, int h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 	if (w == 0 || h == 0) return;
+	// Check if we are not in perspective
     if(!perspective)
 	{
+		// Set orthogonal view
 		if (w <= h)
 			glOrtho(-3.0, 3.0, -3.0 * (GLfloat) h / (GLfloat) w, 3.0 * (GLfloat) h / (GLfloat) w, -10.0, 10.0);
 	    else
@@ -209,8 +228,9 @@ void reshapeCallBack(int w, int h)
 	}
 	else
 	{
+		// Set perspective view
 		gluPerspective(60,w/h, 1, 10.0);
-		gluLookAt(0,0,5, //eye
+		gluLookAt(0,0,5, // eye
 			0,0,0, // center
 			0,1,0); // up
 	}
@@ -245,6 +265,7 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 	case 'm': case 'M':
 		current_model++;
 		if (current_model > NUMBER_OF_MODELS) current_model = 1;
+		// Set current_model_string to the text for the OSD depending on the model
 		if (current_model == 1)
 		{
 			current_model_string="Cube";
@@ -323,16 +344,20 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 		}
 		break;
 	case 't':
+		// Easter egg! ;D
 		current_model=0;
 		current_model_string="Teapot";
 		break;
+	// Toggle perspective
 	case 'p':
 		perspective=!perspective;
 		reshapeCallBack(vpW, vpH);
 		break;
+	// Toggle grids
 	case 'x': x_y_display++; if(x_y_display>1) x_y_display=0; break;
 	case 'y': y_z_display++; if(y_z_display>1) y_z_display=0; break;
 	case 'z': x_z_display++; if(x_z_display>1) x_z_display=0; break;
+	// Raise/lower wings
 	case '=': if(wingAngle < wingAngleMax) wingAngle+=1;break;
 	case '-': if((-wingAngle) < wingAngleMax) wingAngle-=1;break;
 	default:
@@ -341,11 +366,13 @@ void keyboardCallBack(unsigned char key, int x, int y) {
 
 	glutPostRedisplay();
 }
-void minecraftStyle(int key, int x, int y)
+// Glut special function to bind F3 to toggle OSD
+void ToggleOSD(int key, int x, int y)
 {
 	if (key == GLUT_KEY_F3)
 	{
 		F3pressed = !F3pressed;
+		// Write current model to standard output
 		std::cout << "Current model : " << current_model_string << "\n";
 	}
 	glutPostRedisplay();
@@ -360,54 +387,57 @@ void displayCallBack()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
+	// Display OSD ?
 	if (F3pressed)
 	{
-
+		// Disable lighting so the OSD is not affected by it
 		glDisable(GL_LIGHTING);
 		glColor3f(1,1,1);
+		// Set the render position for text
 		glRasterPos3f (-3.4, 2.85, 0);
 
+		// Build the string to be shown
 		std::string displayString = "Current model : " + current_model_string;
 
+		// Iterate through the string
 		for(unsigned int i = 0; i < displayString.size() ; i++)
 		{
+			// Write out one char at a time
 			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, displayString[i]);
 		}
+		
+		// Re-enable lighting
 		glEnable(GL_LIGHTING);
 	}
 
+	// Configure position, diffuse light and specular light of light 0
 	GLfloat light0_position[] = {-2,2,2,1};
 	GLfloat light0_diffuse[] = {0.7,0.7,0.7,1};
 	GLfloat light0_specular[] = {0.9,0.9,0.9,1};
+	// Set the scene ambient light to a low level
 	GLfloat lightscene_ambience[] = {0.4,0.4,0.4,1};
+	// Set the material specular reflectivity
 	GLfloat material_specular[] = {1,1,1,1};
 
+	// Actually configure the scene ambient light
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT,lightscene_ambience);
 
+	// Actually configure the light, and enable it
 	glLightfv(GL_LIGHT0,GL_POSITION, light0_position);
 	glLightfv(GL_LIGHT0,GL_DIFFUSE, light0_diffuse);
 	glLightfv(GL_LIGHT0,GL_SPECULAR, light0_specular);
 	glEnable(GL_LIGHT0);
 
+	// Set the material specularity and shininess factor
 	glMaterialfv(GL_FRONT,GL_SPECULAR,material_specular);
 	glMaterialf(GL_FRONT,GL_SHININESS,25); 
 
-	/*if(lighting)
-	{
-		glDisable(GL_LIGHTING);
-		glColor3f(1,1,1);
-		glBegin(GL_LINES);
-		glVertex3f(0,0,0);
-		glVertex3f(light0_position[0],light0_position[1],light0_position[2]);
-		glEnd();
-		glEnable(GL_LIGHTING);
-	}*/
-	
 	executeViewControl (yaw, pitch);
 	drawAxesAndGridLines();
 
 	glColor3f(1,1,1);
 
+	// Draw the currently selected model
 	switch(current_model)
 	{
 		case 1:
@@ -415,11 +445,11 @@ void displayCallBack()
 			break;
 		case 2:
 			draw3Dcurve  (1.0,          //depth  
-					  1.5,          //inner radius
-					  2.0,          //outer radius
-					  0.0,          //start angle //0.0
-					  270,  		//stop angle
-					  5.0);         //anular increments
+					      1.5,          //inner radius
+					      2.0,          //outer radius
+					      0.0,          //start angle //0.0
+					      270,  		//stop angle
+					      5.0);         //anular increments
 			break;
 		case 3:
 			drawS();
@@ -464,6 +494,7 @@ void displayCallBack()
 			test();
 			break;
 		case 17:
+			// Scale it to fit on the screen
 			glScalef(0.2,0.2,0.2);
 			wing(5, wingAngle);
 			break;
@@ -474,12 +505,15 @@ void displayCallBack()
 			drawBody();
 			break;
 		case 0:
+			// Easter egg! ;D
 			glColor3f(1,1,1);
 			glutSolidTeapot(1);
 			break;
 		default:
+			// oops. something went wrong.
 			printf("Unknown model\n");
 	}
+
 
 	glLoadIdentity();
 	glutSwapBuffers();
@@ -505,16 +539,17 @@ int main(int argc, char** argv)
 	glutMouseFunc(mouseClickCallBack);
     glutMotionFunc(mouseMotionCallBack);
 	glutKeyboardFunc(keyboardCallBack);
-	glutSpecialFunc(minecraftStyle);
+	glutSpecialFunc(ToggleOSD); // Function used to bind F3 for the OSD
 
-	glClearColor(1.0, 1.0, 1.0, 1.0);
+	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glColor3f(1.0, 0.0, 0.0);
 	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-	glEnable(GL_DEPTH_TEST); /* Enable hidden--surface--removal */
+	glEnable(GL_DEPTH_TEST); // Enable hidden--surface--removal
 	glEnable( GL_COLOR_MATERIAL );
 
-	glEnable( GL_NORMALIZE);
+	glEnable( GL_NORMALIZE); // Fix surface normals and scaling so lighting actually works properly.
 
+	// Print the help
 	help();
 
 	glutMainLoop();

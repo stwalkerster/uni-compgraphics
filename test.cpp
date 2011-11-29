@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////
+//
+// test.cpp - function to draw the foot without a hoof
+//
+// Author: Vasileios Spyridakis & Simon Walker
+//
+// Invocation: call test()
+//
+////////////////////////////////////////////////////////////////
+
 #include <GL/glut.h>
 #include "Ucube.h"
 #include "test.h"

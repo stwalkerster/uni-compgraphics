@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////
+//
+// Ucube.cpp - function to draw one slice of the pigs foot
+//
+// Author: Vasileios Spyridakis & Simon Walker
+//
+// Invocation: call Ucube()
+//
+////////////////////////////////////////////////////////////////
+
 #include <GL/glut.h>
 #include "drawU.h"
 #include "drawW.h"

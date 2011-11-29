@@ -1,30 +1,35 @@
+////////////////////////////////////////////////////////////////
+//
+// drawU.cpp - function to draw the letter U
+//
+// Author: Simon Walker
+//
+// Invocation: call drawU()
+//
+////////////////////////////////////////////////////////////////
+
 #include <GL/glut.h>
 #include "drawU.h"
 #include "drawW.h"
 
 void drawU()
 {
-	// draw left |
+	// Draw left |
 	glPushMatrix();
 		glTranslatef(-1.5,1,0);
-		//r
-		//s
 		drawStick();
 	glPopMatrix();
 
-	// draw right |
+	// Draw right |
 	glPushMatrix();
 		glTranslatef(0,0.5,0);
-		//r
 		glScalef(1,1.5,1);
 		drawStick();
 	glPopMatrix();
 
-	// draw U
+	// Draw U
 	glPushMatrix();
 		glTranslatef(-0.75,0,0);
-		//r
-		//s
 		drawLoop();
 	glPopMatrix();
 }
