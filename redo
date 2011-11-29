@@ -1,0 +1,5 @@
+#!bash
+
+dot -Tpng scenegraph.gv > scenegraph.png
+
+"C:\Program Files (x86)\Google\Picasa3\PicasaPhotoViewer.exe" scenegraph.png

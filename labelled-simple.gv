@@ -1,0 +1,86 @@
+digraph SceneGraph{
+
+	node[
+		shape=box
+	];
+
+	drawBody;
+	drawOval;
+	drawHead;
+	drawT;
+	wing;
+	drawFoot;
+	drawOvalHalf;
+	drawEyes;
+	drawNose;
+	drawEar;
+	cube;
+	draw3Dcurve;
+	wingseg;
+	drawX;
+	test;
+	drawU;
+	drawS;
+	drawV;
+	drawW;
+	UCube;
+	drawStick;
+	drawLoop;
+	
+	
+	drawBody->drawOval[label=1];
+	drawBody->drawHead[label=1];
+	drawBody->drawT[label=1];
+	drawBody->wing[label=2];
+	drawBody->drawFoot[label=4];
+
+	drawOval->drawOvalHalf[label=2];
+	
+	drawHead->drawOval[label=1];
+	drawHead->drawEyes[label=1];
+	drawHead->drawNose[label=1];
+	drawHead->drawEar[label=2];
+	
+	drawT->cube[label=3];
+	drawT->draw3Dcurve[label=1];
+	
+	wing->wingseg[label=1];
+	wing->wing[label=1];
+	
+	drawFoot->drawX[label=15];
+	drawFoot->test[label=1];
+	
+	drawOvalHalf->drawU[label=30];
+	
+	drawEyes->drawS[label=18];
+	
+	drawNose->drawU[label=18];
+	
+	drawEar->drawV[label=9];
+	
+	wingseg->drawU[label=1];
+	wingseg->drawW[label=5];
+	
+	drawX->cube[label=1];
+	drawX->draw3Dcurve[label=2];
+	
+	test->UCube[label=6];
+	
+	drawU->drawStick[label=2];
+	drawU->drawLoop[label=1];
+	
+	drawS->draw3Dcurve[label=2];
+	drawS->cube[label=2];
+	
+	drawV->cube[label=2];
+	drawV->draw3Dcurve[label=1];
+	
+	drawW->drawStick[label=3];
+	drawW->drawLoop[label=2];
+	
+	UCube->drawU[label=4];
+	
+	drawStick->cube[label=1];
+	
+	drawLoop->draw3Dcurve[label=1];
+}
